@@ -69,6 +69,12 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: UserBundle\Entity\User
+    registration:
+        form:
+            type: UserBundle\Form\Type\RegistrationFormType
+    profile:
+        form:
+            type: UserBundle\Form\Type\ProfileFormType
 
 # User Configuration
 bcp_user:

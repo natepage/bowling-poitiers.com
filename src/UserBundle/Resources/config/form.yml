@@ -5,3 +5,13 @@ services:
             - "@user.security.roles_list_builder"
         tags:
             - { name: form.type }
+
+    user.form.registration:
+        class: UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type }
+
+    user.form.profile:
+        class: UserBundle\Form\Type\ProfileFormType
+        tags:
+            - { name: form.type }

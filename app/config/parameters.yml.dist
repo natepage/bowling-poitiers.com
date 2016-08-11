@@ -27,3 +27,11 @@ parameters:
     fb_app_id:                ~
     fb_app_secret:            ~
     fb_default_graph_version: ~
+
+    # Google parameters
+    google_app_id:            ~
+    google_app_secret:        ~
+
+    # Twitter parameters
+    twitter_app_id:           ~
+    twitter_app_secret:       ~

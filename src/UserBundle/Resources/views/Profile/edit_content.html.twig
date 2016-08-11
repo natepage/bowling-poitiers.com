@@ -1,6 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal">
+<form action="{{ path('fos_user_profile_edit') }}" method="POST" class="fos_user_profile_edit form-horizontal">
     {{ form_label(form.username) }}
     {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
     {% if form_errors(form.username) %}

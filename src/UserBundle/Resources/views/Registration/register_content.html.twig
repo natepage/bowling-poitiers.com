@@ -41,6 +41,23 @@
         {% endif %}
     </div>
 
+    <div class="form-group{% if form_errors(form.licence) %} has-error{% endif %}"
+         style="margin-left: 0; margin-right: 0;">
+        {{ form_label(form.licence) }}
+        {{ form_widget(form.licence, {'attr': {'class': 'form-control'}}) }}
+        {% if form_errors(form.licence) %}
+            <span class="help-block">{{ form_errors(form.licence) }}</span>
+        {% endif %}
+    </div>
+
+    <div class="form-group{% if form_errors(form.newsletter) %} has-error{% endif %}"
+         style="margin-left: 0; margin-right: 0;">
+        {{ form_widget(form.newsletter) }} {{ form_label(form.newsletter) }}
+        {% if form_errors(form.newsletter) %}
+            <span class="help-block">{{ form_errors(form.newsletter) }}</span>
+        {% endif %}
+    </div>
+
     {{ form_rest(form) }}
 
     <hr>

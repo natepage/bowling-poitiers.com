@@ -132,7 +132,7 @@ security:
             logout:            true
             anonymous:         true
             remember_me:
-                secret:           "%secret%"
+                secret:        "%secret%"
                 lifetime:      31536000 # 365 jours en secondes
                 path:          /
                 domain:        ~
