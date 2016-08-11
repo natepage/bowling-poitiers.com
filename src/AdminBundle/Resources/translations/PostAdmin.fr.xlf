@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.post_label">
+                <source>dashboard.post_label</source>
+                <target>Article</target>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.post_text">
+                <source>dashboard.stats.post_text</source>
+                <target>Articles</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_list">
+                <source>breadcrumb.link_post_list</source>
+                <target>Liste des articles</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_create">
+                <source>breadcrumb.link_post_create</source>
+                <target>Créer un article</target>
+            </trans-unit>
+            <trans-unit id="filter.label_author_name">
+                <source>filter.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="filter.label_created">
+                <source>filter.label_created</source>
+                <target>Date de création</target>
+            </trans-unit>
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="filter.label_published">
+                <source>filter.label_published</source>
+                <target>Publié</target>
+            </trans-unit>
+            <trans-unit id="list.label_description">
+                <source>list.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="list.label_created">
+                <source>list.label_created</source>
+                <target>Créé le</target>
+            </trans-unit>
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="list.label_author_name">
+                <source>list.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="list.label_published">
+                <source>list.label_published</source>
+                <target>Publié</target>
+            </trans-unit>
+            <trans-unit id="list.label_shared_newsletter">
+                <source>list.label_shared_newsletter</source>
+                <target>Diffusé à la newsletter</target>
+            </trans-unit>
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="form.label_description">
+                <source>form.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="form.label_content">
+                <source>form.label_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="tab_post">
+                <source>tab_post</source>
+                <target>Article</target>
+            </trans-unit>
+            <trans-unit id="tab_publish">
+                <source>tab_publish</source>
+                <target>Publication</target>
+            </trans-unit>
+            <trans-unit id="form.label_published">
+                <source>form.label_published</source>
+                <target>Publié</target>
+            </trans-unit>
+            <trans-unit id="tab_images">
+                <source>tab_images</source>
+                <target>
+                    <![CDATA[
+                        Images <i class="fa fa-question-circle admin-group-description-toggle" title="Description" target="#admin-group-images-description"></i>
+                    ]]>
+                </target>
+            </trans-unit>
+            <trans-unit id="form.tab_description_images">
+                <source>form.tab_description_images</source>
+                <target>
+                    <![CDATA[
+                        <div id="admin-group-images-description" class="admin-group-description help-block">
+                            <dl>
+                                <dt>Ajout</dt>
+                                <dd>Ajoutez le nombre d'éléments souhaité avant de définir les fichiers associés.</dd>
+                                <dt>Suppression</dt>
+                                <dd>L'ajout et la suppression ne peuvent être effectués en même temps.</dd>
+                            </dl>
+                        </div>
+                    ]]>
+                </target>
+            </trans-unit>
+            <trans-unit id="tab_pdfs">
+                <source>tab_pdfs</source>
+                <target>PDFs</target>
+            </trans-unit>
+            <trans-unit id="show.tab_images">
+                <source>show.tab_images</source>
+                <target>Images</target>
+            </trans-unit>
+            <trans-unit id="show.label_title">
+                <source>show.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="show.label_description">
+                <source>show.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="show.label_content">
+                <source>show.label_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="show.label_created">
+                <source>show.label_created</source>
+                <target>Créé le</target>
+            </trans-unit>
+            <trans-unit id="show.label_author_name">
+                <source>show.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="show.label_published">
+                <source>show.label_published</source>
+                <target>Publié</target>
+            </trans-unit>
+            <trans-unit id="show.label_shared_newsletter">
+                <source>show.label_shared_newsletter</source>
+                <target>Diffusé à la newsletter</target>
+            </trans-unit>
+            <trans-unit id="batch_action_newsletter">
+                <source>batch_action_newsletter</source>
+                <target>Diffuser la newsletter</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_newsletter_success">
+                <source>flash_batch_newsletter_success</source>
+                <target>La newsletter a été diffusée aux inscrits</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_newsletter_error">
+                <source>flash_batch_newsletter_error</source>
+                <target>Une erreur est survenue lors de la diffusion</target>
+            </trans-unit>
+            <trans-unit id="flash_facebook_token_empty">
+                <source>flash_facebook_token_empty</source>
+                <target>
+                    <![CDATA[
+                        <span>
+                            Un problème est survenue lors de la connexion à Facebook.
+                            Merci de bien vouloir essayer de vous (re)connecter manuellement.
+
+                            <a href="%fb_login_url%">Connexion Facebook</a>
+                        </span>
+                    ]]>
+                </target>
+            </trans-unit>
+            <trans-unit id="batch_action_facebook">
+                <source>batch_action_facebook</source>
+                <target>Diffuser sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_success_all">
+                <source>flash_batch_facebook_success</source>
+                <target>Tous les articles ont été diffusés sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_success">
+                <source>flash_batch_facebook_success</source>
+                <target>L'article "%post_title%" a été diffusé sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_error">
+                <source>flash_batch_facebook_error</source>
+                <target>La diffusion sur facebook a échoué</target>
+            </trans-unit>
+            <trans-unit id="batch_action_newsletter_and_facebook">
+                <source>batch_action_newsletter_and_facebook</source>
+                <target>Diffuser la newsletter et sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_post_not_published">
+                <source>flash_batch_facebook_post_not_published</source>
+                <target>L'article n'est pas publié</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_access_token_empty">
+                <source>flash_batch_facebook_access_token_empty</source>
+                <target>La connexion à facebook a échoué</target>
+            </trans-unit>
+            <trans-unit id="newsletter_post_not_published">
+                <source>newsletter_post_not_published</source>
+                <target>L'article "%post_title%" n'est pas publié</target>
+            </trans-unit>
+            <trans-unit id="flash_cookie_new_interface_newsletter">
+                <source>flash_cookie_new_interface_newsletter</source>
+                <target>
+                    <![CDATA[
+                        <p>
+                            La diffusion s'éffectue désormais depuis cet écran, en bas à partir de la liste de toutes
+                            les actions réalisables sur les articles comme par exemple les supprimer.
+                        </p>
+                        <p>
+                            Sélectionnez les articles concernés, puis l'action et pour finir cliquez sur ok.
+                            <a href="#" data-url="%cookie_newsletter_url%" data-dismiss="alert" onclick="ajaxCookieConsent(this); return false;">J'ai compris !</a>
+                        </p>
+                    ]]>
+                </target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

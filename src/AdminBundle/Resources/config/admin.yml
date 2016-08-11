@@ -1,0 +1,86 @@
+services:
+    bcp.admin.post:
+        class: AdminBundle\Admin\PostAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Post
+            - AdminBundle:Post
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.post_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.image:
+        class: AdminBundle\Admin\ImageAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Image
+            - AdminBundle:CRUD
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.image_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.pdf:
+        class: AdminBundle\Admin\PdfAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Pdf
+            - AdminBundle:CRUD
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.pdf_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.page:
+        class: AdminBundle\Admin\PageAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Page
+            - AdminBundle:Page
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.page_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.user:
+        class: AdminBundle\Admin\UserAdmin
+        arguments:
+            - ~
+            - UserBundle\Entity\User
+            - AdminBundle:CRUD
+        calls:
+            - [setUserManager, ["@fos_user.user_manager"]]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.user_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.newsletter:
+        class: AdminBundle\Admin\NewsletterAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Newsletter
+            - AdminBundle:CRUD
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.newsletter_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.email:
+            class: AdminBundle\Admin\EmailAdmin
+            arguments:
+                - ~
+                - AdminBundle\Entity\Email
+                - AdminBundle:Email
+            tags:
+                - name: sonata.admin
+                  manager_type: orm
+                  label: dashboard.email_label
+                  label_translator_strategy: sonata.admin.label.strategy.underscore

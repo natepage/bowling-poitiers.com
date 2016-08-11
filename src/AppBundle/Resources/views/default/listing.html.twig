@@ -1,0 +1,27 @@
+{% extends '@App/default/view.html.twig' %}
+
+{% block site_title %}{{ parent() }} - Listing{% endblock site_title %}
+
+{% block content %}
+    <h1 class="title text-center">Listing</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <tr class="info">
+                {% for key, value in listing|first %}
+                    <th>{{ key|capitalize }}</th>
+                {% endfor %}
+            </tr>
+            {% for joueur in listing %}
+                <tr>
+                    {% for attr in joueur %}
+                        <td>{{ attr }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ include('@App/utils/social.html.twig', {'title': siteTitle ~ ' - Listing'}) }}
+{% endblock footer %}

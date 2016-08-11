@@ -1,0 +1,19 @@
+<div class="newsletter-ctn">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-xs-12 text-center">
+                <h6>
+                    Abonnez vous à notre newsletter pour rester informé !
+                </h6>
+            </div>
+            <form method="POST" class="form-inline" action="{{ path('newsletter_register') }}">
+                <div class="col-sm-2 col-xs-6">
+                    <input type="email" name="mail_address" placeholder="Votre email..." class="form-control" required>
+                </div>
+                <div class="col-sm-2 col-xs-6">
+                    <button type="submit" class="btn btn-round btn-fill btn-info"><i class="fa fa-newspaper-o"></i> S'abonner</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+{% set siteTitle = 'Bowling Club Poitevin' %}
+{% set shareUrl = app.request.schemeAndHttpHost ~ app.request.requestUri %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=8;IE=9;IE=edge;chrome=1" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="robots" content="noindex, nofollow">
+        <meta charset="UTF-8" />
+        <meta http-equiv="content-language" content="fr">
+        <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+        <meta name="author" content="{{ siteTitle }}" />
+        <meta name="keywords" content="bowling,poitiers,bcp,club,poitevin,bowling club poitevin" />
+        <link rel="icon" type="image/x-icon" href="{{ 'bundles/app/img/logo_bcp.jpg'|imagine_filter('navbar_logo') }}" />
+        <title>{% block site_title %}{{ siteTitle }}{% endblock site_title %}</title>
+
+        {% block meta_og %}
+            <meta property="og:locale" content="fr_FR" />
+            <meta property="og:title" content="{{ siteTitle }}" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="{{ shareUrl }}" />
+            <meta property="og:image" content="{{ 'bundles/app/img/logo_bcp.jpg'|imagine_filter('navbar_logo') }}" />
+        {% endblock meta_og %}
+
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('bundles/app/css/gsdk.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('bundles/app/css/gsdk-styles.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('bundles/app/css/bcp-main-styles.css') }}" rel="stylesheet" type="text/css">
+            <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+        {% endblock stylesheets %}
+    </head>
+    <body>
+        {{ include('navbar.html.twig') }}
+
+        <div class="main">
+            {% block body %}{% endblock body %}
+            {{ include('@App/utils/newsletter.html.twig') }}
+            {{ include('footer.html.twig') }}
+        </div>
+
+        {% block javascripts %}
+            <script src="https://use.fontawesome.com/2e67942402.js"></script>
+            <script src="{{ asset('bundles/app/js/jquery-1.10.2.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/jquery-ui-1.10.4.custom.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/gsdk-bootstrapswitch.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/get-shit-done.js') }}"></script>
+            <script type="text/javascript">
+                function newWindow(url)
+                {
+                    window.open(url, '', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400');
+                }
+
+                $(document).ready(function(){
+                    var cpt = 1;
+                    $('.alert-dissmisible').each(function () {
+                        var alert = this;
+                        var hideTimeOut = setTimeout(function () {
+                            $(alert).fadeOut("slow");
+                        }, 3000 * cpt);//setTimeout
+                        cpt++;
+                    });//each
+                });
+            </script>
+        {% endblock javascripts %}
+    </body>
+</html>
