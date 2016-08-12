@@ -131,10 +131,10 @@ security:
                 csrf_token_generator: security.csrf.token_manager
             oauth:
                 resource_owners:
-                    facebook: /login/check_facebook
-                login_path:   /login
+                    facebook: /oauth2/login/check_facebook
+                login_path:   /oauth2/login
                 use_forward:  false
-                failure_path: /login
+                failure_path: /oauth2/login
                 oauth_user_provider:
                     service:  hwi_oauth.user.provider.fosub_bridge
             logout:           true

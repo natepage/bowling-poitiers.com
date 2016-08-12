@@ -2,7 +2,7 @@ hwi_oauth:
     firewall_names: [main]
 
     connect:
-        account_connector: user.hwi.user_provider
+        account_connector: hwi_oauth.user.provider.fosub_bridge
 
     fosub:
         username_iterations: 30
@@ -11,10 +11,10 @@ hwi_oauth:
 
     resource_owners:
         facebook:
-            type: facebook
-            client_id: %fb_test_app_id%
+            type:          facebook
+            client_id:     %fb_test_app_id%
             client_secret: %fb_test_app_secret%
-            scope: "public_profile, email, user_friends"
+            scope:         "public_profile, email, user_friends"
             infos_url:     "https://graph.facebook.com/me?fields=id,name,email,picture.type(square)"
             options:
                 appsecret_proof: true
