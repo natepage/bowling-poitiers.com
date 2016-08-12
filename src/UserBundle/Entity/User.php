@@ -51,6 +51,13 @@ class User extends ModelUser
     protected $licence;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", nullable=true)
+     */
+    protected $facebookId;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="newsletter", type="boolean")
@@ -177,6 +184,29 @@ class User extends ModelUser
     public function getNewsletter()
     {
         return $this->newsletter;
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param string|null $facebookId
+     * @return User
+     */
+    public function setFacebookId($facebookId = null)
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
     }
 }
 

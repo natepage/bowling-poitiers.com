@@ -19,8 +19,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
 
-            //FOS Bundles
+            //FOS Bundles and OAuth
             new FOS\UserBundle\FOSUserBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
             //KNP Bundles
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

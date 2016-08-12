@@ -17,3 +17,9 @@ services:
         tags:
             - { name: twig.extension }
         public: false
+
+    user.hwi.user_provider:
+        class: UserBundle\Security\Core\User\UserProvider
+        arguments:
+            - "@fos_user.user_manager"
+            - { facebook: facebook_id }
