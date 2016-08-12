@@ -96,8 +96,16 @@ class ConnectController extends BaseConnectController
         $currentUser = $currentToken->getUser();
         $userInformation = $resourceOwner->getUserInformation($accessToken);
 
-        $this->get('hwi_oauth.account.connector')->connect($currentUser, $userInformation);
-        $this->authenticateUser($request, $currentUser, $service, $accessToken, false);
+        if($currentUser->getEmail() === $userInformation->getEmail()){
+            $this->get('hwi_oauth.account.connector')->connect($currentUser, $userInformation);
+            $this->authenticateUser($request, $currentUser, $service, $accessToken, false);
+        } else {
+            $msg = 'Le compte auquel vous essayez de vous connecter à partir des réseaux sociaux '
+                 . 'ne correspond pas à celui actuellement connecté. Merci de bien vouloir déconnecter '
+                 . 'le compte [%s] avant de tenter une nouvelle connexion.';
+
+            $this->addFlash('danger', sprintf($msg, $currentUser->getUsername()));
+        }
 
         return $this->redirect($this->generateUrl('homepage'));
     }
