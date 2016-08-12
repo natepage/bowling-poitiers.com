@@ -14,7 +14,7 @@ hwi_oauth:
             type:          facebook
             client_id:     %fb_test_app_id%
             client_secret: %fb_test_app_secret%
-            scope:         "public_profile, email, user_friends"
-            infos_url:     "https://graph.facebook.com/me?fields=id,name,email,picture.type(square)"
+            scope:         "public_profile, email"
+            #infos_url:     "https://graph.facebook.com/me?fields=id,name,email,picture.type(square)" [Maybe for later]
             options:
                 appsecret_proof: true

@@ -2,13 +2,13 @@ hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /oauth2/connect
 
-hwi_oauth_connect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-    prefix:   /oauth2/connect
-
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /oauth2/login
+
+hwi_oauth_connect:
+    resource: "@UserBundle/Resources/config/connect.yml"
+    prefix:   /oauth2/connect
 
 facebook_login:
     path: /oauth2/login/check_facebook

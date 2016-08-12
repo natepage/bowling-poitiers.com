@@ -119,7 +119,7 @@
 .btn-social:hover {
     opacity: 1;
 }
-.btn-fb, .btn-fb:hover, .btn-fb:active, .btn-fb:focus {
+.btn-facebook, .btn-facebook:hover, .btn-facebook:active, .btn-facebook:focus {
     background-color: rgb(59, 89, 152);
     border-color: rgb(59, 89, 152);
     color: #FFFFFF;

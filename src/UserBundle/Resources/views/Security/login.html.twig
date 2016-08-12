@@ -1,4 +1,4 @@
-{% extends "::fos_user_layout.html.twig" %}
+{% extends "::fos_user_layout_with_oauth2.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -6,7 +6,7 @@
 
 {% block fos_user_content %}
 {% if error %}
-    <div class="alert alert-danger">{{ error|trans }}</div>
+    <div class="alert alert-danger">{{ error.message|trans }}</div>
 {% endif %}
 
 <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">

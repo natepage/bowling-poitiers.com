@@ -4,7 +4,7 @@
     <div class="alert alert-danger">{{ form_errors(form) }}</div>
 {% endif %}
 
-<form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register form-horizontal">
+<form action="" method="POST" class="fos_user_registration_register form-horizontal">
     <div class="form-group{% if form_errors(form.email) %} has-error{% endif %}"
          style="margin-left: 0; margin-right: 0;">
         {{ form_label(form.email) }}

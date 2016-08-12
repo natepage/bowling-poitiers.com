@@ -62,21 +62,21 @@ class User extends ModelUser
      *
      * @ORM\Column(name="facebook_id", type="string", nullable=true)
      */
-    protected $facebook_id;
+    protected $facebookId;
 
     /**
      * @var string
      *
      * @ORM\Column(name="google_id", type="string", nullable=true)
      */
-    protected $google_id;
+    protected $googleId;
 
     /**
      * @var string
      *
      * @ORM\Column(name="twitter_id", type="string", nullable=true)
      */
-    protected $twitter_id;
+    protected $twitterId;
 
     public function __construct()
     {
@@ -209,7 +209,7 @@ class User extends ModelUser
      */
     public function setFacebookId($facebookId)
     {
-        $this->facebook_id = $facebookId;
+        $this->facebookId = $facebookId;
 
         return $this;
     }
@@ -221,7 +221,7 @@ class User extends ModelUser
      */
     public function getFacebookId()
     {
-        return $this->facebook_id;
+        return $this->facebookId;
     }
 
     /**
@@ -233,7 +233,7 @@ class User extends ModelUser
      */
     public function setGoogleId($googleId)
     {
-        $this->google_id = $googleId;
+        $this->googleId = $googleId;
 
         return $this;
     }
@@ -245,7 +245,7 @@ class User extends ModelUser
      */
     public function getGoogleId()
     {
-        return $this->google_id;
+        return $this->googleId;
     }
 
     /**
@@ -257,7 +257,7 @@ class User extends ModelUser
      */
     public function setTwitterId($twitterId)
     {
-        $this->twitter_id = $twitterId;
+        $this->twitterId = $twitterId;
 
         return $this;
     }
@@ -269,6 +269,6 @@ class User extends ModelUser
      */
     public function getTwitterId()
     {
-        return $this->twitter_id;
+        return $this->twitterId;
     }
 }
