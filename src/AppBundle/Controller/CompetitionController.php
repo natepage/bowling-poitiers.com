@@ -131,6 +131,13 @@ class CompetitionController extends Controller
      */
     public function updateAction(Request $request, Competition $competition, $display)
     {
+        $authorId = $competition->getAuthor()->getId();
+        $currentUserId = $this->getUser()->getId();
+
+        if($authorId !== $currentUserId){
+            throw $this->createNotFoundException();
+        }
+
         $form = $this->createForm(CompetitionType::class, $competition);
 
         if($form->handleRequest($request)->isValid()){
