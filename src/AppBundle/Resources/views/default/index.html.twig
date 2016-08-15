@@ -7,7 +7,9 @@
                 {% for post in posts %}
                     {{ include('@App/default/post/preview.html.twig') }}
                 {% else %}
-                    Pas d'article
+                    <div class="alert alert-info">
+                        Pas d'article
+                    </div>
                 {% endfor %}
 
                 {{ include('@App/default/post/pagination.html.twig') }}

@@ -1,0 +1,7 @@
+{% if messages.getTotalItemCount > limit %}
+    <div class="row">
+        <div class="col-md-12 pagination-ctn">
+            {{ knp_pagination_render(messages) }}
+        </div>
+    </div>
+{% endif %}

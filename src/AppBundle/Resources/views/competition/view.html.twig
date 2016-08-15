@@ -1,0 +1,40 @@
+{% extends '@App/default/view.html.twig' %}
+
+{% block header %}
+    <div class="col-md-12">
+        <div class="pull-right">
+            {{ include('@App/competition/buttons/update_button.html.twig') }}
+            {{ include('@App/competition/buttons/remove_button.html.twig') }}
+            <a href="{{ path('competitions_messages_view', {
+                'display': display,
+                'page': page,
+                'id': competition.id,
+                'slug': competition.slug
+            }) }}" class="btn btn-info">
+                <i class="fa fa-commenting"></i><span class="hidden-xs">Accéder aux messages</span>
+            </a>
+            <a href="{{ path('competitions_index', {'display': display, 'page': page}) }}" class="btn btn-default">
+                <i class="fa fa-chevron-circle-left"></i><span class="hidden-xs">Retour aux compétitions</span>
+            </a>
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="col-md-12">
+        <h1 class="title text-center">
+            {{ competition.title }}
+            <small class="subtitle">
+                écrit par {{ competition.author.username }}, le {{ competition.created|date('d/m/Y') }}
+            </small>
+        </h1>
+        <div class="content-ctn">
+            {{ include('@App/competition/infos_table.html.twig') }}
+            {{ competition.description|raw }}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block footer %}
+    {{ include('@App/utils/social.html.twig', {'title': siteTitle ~ ' - ' ~ competition.title}) }}
+{% endblock footer %}

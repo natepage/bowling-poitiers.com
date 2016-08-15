@@ -1,0 +1,14 @@
+<table class="table">
+    <tr>
+        <th>Bowling</th>
+        <th>Partenaires recherchés</th>
+        <th>Débute le</th>
+        <th>Fini le</th>
+    </tr>
+    <tr>
+        <td>{{ competition.bowling }}</td>
+        <td>{{ competition.partners }}</td>
+        <td>{{ competition.start|date('d/m/Y à H:i') }}</td>
+        <td>{{ competition.end|date('d/m/Y à H:i') }}</td>
+    </tr>
+</table>

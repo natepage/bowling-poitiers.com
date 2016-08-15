@@ -1,0 +1,39 @@
+{% extends '@App/default/view.html.twig' %}
+
+{% block header %}
+    <div class="col-md-12">
+        <div class="pull-right">
+            <a href="{{ path('competitions_messages_view', {
+                'display': display,
+                'page': page,
+                'messagesPage': messagesPage,
+                'id': message.competition.id,
+                'slug': message.competition.slug
+            }) }}" class="btn btn-default">
+                <i class="fa fa-chevron-circle-left"></i><span class="hidden-xs">Retour aux messages</span>
+            </a>
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="col-md-12">
+        <h1 class="title text-center">
+            {{ message.competition.title }}
+            <small class="subtitle">
+                écrit par {{ message.competition.author.username }}, le {{ message.competition.created|date('d/m/Y') }}
+            </small>
+        </h1>
+        {{ include('@App/competition/message/preview.html.twig', {'inForm': true}) }}
+        <div class="content-ctn text-center">
+            Vous êtes sur le point de supprimer ce message, cette action sera irréversible.
+            Voulez-vous vraiment continuer ?
+
+            {{ form_start(form) }}
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-remove"></i> Supprimer le message
+                </button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

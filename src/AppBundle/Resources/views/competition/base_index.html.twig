@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-ctn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    {{ include('@App/competition/buttons/create_button.html.twig') }}
+                    <a href="{{ path('competitions_index', {'display': switchDisplay.target}) }}" class="btn btn-default">
+                        <i class="fa fa-{{ switchDisplay.icon }}"></i> <span class="hidden-xs">{{ switchDisplay.text }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+{% endblock body %}

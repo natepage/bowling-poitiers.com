@@ -98,6 +98,22 @@
                 <source>render.email_admin</source>
                 <target>[Email] Suppression et export (+ édition)</target>
             </trans-unit>
+            <trans-unit id="header.competition">
+                <source>header.competition</source>
+                <target>Compétition</target>
+            </trans-unit>
+            <trans-unit id="render.competition_reader">
+                <source>render.competition_reader</source>
+                <target>[Compétition] Visualisation</target>
+            </trans-unit>
+            <trans-unit id="render.competition_editor">
+                <source>render.competition_editor</source>
+                <target>[Compétition] Création et modification (+ visualisation)</target>
+            </trans-unit>
+            <trans-unit id="render.competition_admin">
+                <source>render.competition_admin</source>
+                <target>[Compétition] Suppression et export (+ édition)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,0 +1,24 @@
+<div class="col-md-12">
+    <div class="competition-pre-ctn">
+        <a href="{{ path('competitions_view', {
+            'id': competition.id,
+            'slug': competition.slug,
+            'display': 'list',
+            'page': page
+        }) }}" class="competition-link">
+            <div class="text-ctn">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <h5 class="title">
+                            {{ competition.title }}
+                            <small class="subtitle">{{ competition.author.username }}, le {{ competition.created|date('d/m/Y') }}</small>
+                        </h5>
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        {{ include('@App/competition/infos_table.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

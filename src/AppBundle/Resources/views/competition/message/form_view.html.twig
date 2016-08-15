@@ -1,0 +1,37 @@
+<hr>
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% set createPath = path('competitions_messages_create', {
+        'display': display,
+        'id': competition.id,
+        'slug': competition.slug,
+        'page': page,
+        'messagesPage': messagesPage
+    }) %}
+
+    {{ form_start(form, {'action': createPath}) }}
+        {% if form_errors(form.content) %}
+            {% set errors = form.content.vars.errors %}
+
+            <div class="alert alert-danger">
+                <div class="container">
+                    {% for error in errors %}
+                        <div><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error.message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {{ form_widget(form.content) }}
+        <button type="submit" class="btn btn-primary pull-right" style="margin-top: 5px;">
+            <i class="fa fa-commenting"></i> Publiez votre message
+        </button>
+    {{ form_end(form) }}
+{% else %}
+    <div class="text-center">
+        <span>
+            Vous voulez envoyer un message à l'auteur de cette annonce?
+            <a href="{{ path('fos_user_security_login') }}">Connectez vous</a>
+            ou
+            <a href="{{ path('fos_user_registration_register') }}">Inscrivez vous</a>
+        </span>
+    </div>
+{% endif %}

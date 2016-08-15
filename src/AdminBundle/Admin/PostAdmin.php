@@ -214,7 +214,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * This function is called before the post's creating.
      *
-     * @param $post
+     * @param Post $post
      */
     public function preValidate($post)
     {
@@ -226,7 +226,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * This function is called before the post's updating.
      *
-     * @param mixed $post
+     * @param Post $post
      */
     public function preUpdate($post)
     {
@@ -238,7 +238,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * This function is called before the post's removing.
      *
-     * @param mixed $post
+     * @param Post $post
      */
     public function preRemove($post)
     {
@@ -248,7 +248,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * This function is called just after the post was updated.
      *
-     * @param mixed $post
+     * @param Post $post
      */
     public function postUpdate($post)
     {

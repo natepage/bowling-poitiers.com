@@ -1,0 +1,72 @@
+{% extends '@App/default/view.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+{% endblock stylesheets %}
+
+{% block header %}
+    <div class="col-md-12">
+        <div class="pull-right">
+            {% if action == 'create' %}
+                <a href="{{ path('competitions_index', {'display': display}) }}" class="btn btn-default">
+                    <i class="fa fa-chevron-circle-left"></i> Retour aux compétitions
+                </a>
+            {% else %}
+                <a href="{{ path('competitions_view', {
+                    'display': display,
+                    'id': competition.id,
+                    'slug': competition.slug
+                }) }}" class="btn btn-default">
+                    <i class="fa fa-chevron-circle-left"></i> Retour à la compétition
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="competition-form-ctn">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-success pull-right">
+            {% if action == 'create' %}
+                <i class="fa fa-plus-circle"></i> Ajouter la compétition
+            {% else %}
+                <i class="fa fa-pencil"></i> Valider les modifications
+            {% endif %}
+        </button>
+        {{ form_end(form) }}
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/sonatacore/vendor/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('bundles/sonatacore/vendor/moment/locale/fr.js') }}"></script>
+    <script src="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/assets/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.date-time-picker').datetimepicker({
+                //"format": "d/m/Y H:i",
+                "pickTime":true,
+                "useCurrent":true,
+                "showToday":true,
+                "language":"fr",
+                "icons":{
+                    "time":"fa fa-clock-o",
+                    "date":"fa fa-calendar",
+                    "up":"fa fa-chevron-up",
+                    "down":"fa fa-chevron-down"
+                },
+                "useMinutes":true,
+                "useSeconds":false
+            });
+
+            CKEDITOR.replace('competition_description', {
+                toolbar: 'Front'
+            });
+        });
+    </script>
+{% endblock javascripts %}

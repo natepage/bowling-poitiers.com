@@ -78,6 +78,20 @@ class User extends ModelUser
      */
     protected $twitterId;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Competition", mappedBy="author")
+     */
+    protected $competitions;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CompetitionMessage", mappedBy="author")
+     */
+    protected $competitionMessages;
+
     public function __construct()
     {
         parent::__construct();
@@ -86,6 +100,8 @@ class User extends ModelUser
         $this->enabled = true;
         $this->locked = false;
         $this->newsletter = true;
+        $this->competitions = new ArrayCollection();
+        $this->competitionMessages = new ArrayCollection();
     }
 
     /**
@@ -270,5 +286,77 @@ class User extends ModelUser
     public function getTwitterId()
     {
         return $this->twitterId;
+    }
+
+    /**
+     * Add competition
+     *
+     * @param \AppBundle\Entity\Competition $competition
+     *
+     * @return User
+     */
+    public function addCompetition(\AppBundle\Entity\Competition $competition)
+    {
+        $this->competitions[] = $competition;
+
+        return $this;
+    }
+
+    /**
+     * Remove competition
+     *
+     * @param \AppBundle\Entity\Competition $competition
+     */
+    public function removeCompetition(\AppBundle\Entity\Competition $competition)
+    {
+        $this->competitions->removeElement($competition);
+    }
+
+    /**
+     * Get competitions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetitions()
+    {
+        return $this->competitions;
+    }
+
+    /**
+     * Add competitionMessage
+     *
+     * @param \AppBundle\Entity\CompetitionMessage $competitionMessage
+     *
+     * @return User
+     */
+    public function addCompetitionMessage(\AppBundle\Entity\CompetitionMessage $competitionMessage)
+    {
+        $this->competitionMessages[] = $competitionMessage;
+
+        if(null !== $competitionMessage){
+            $competitionMessage->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove competitionMessage
+     *
+     * @param \AppBundle\Entity\CompetitionMessage $competitionMessage
+     */
+    public function removeCompetitionMessage(\AppBundle\Entity\CompetitionMessage $competitionMessage)
+    {
+        $this->competitionMessages->removeElement($competitionMessage);
+    }
+
+    /**
+     * Get competitionMessages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetitionMessages()
+    {
+        return $this->competitionMessages;
     }
 }

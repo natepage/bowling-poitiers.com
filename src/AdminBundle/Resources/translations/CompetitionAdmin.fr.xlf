@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.competition_label">
+                <source>dashboard.competition_label</source>
+                <target>Compétition</target>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.competition_text">
+                <source>dashboard.stats.competition_text</source>
+                <target>Compétitions</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_competition_list">
+                <source>breadcrumb.link_competition_list</source>
+                <target>Liste des compétitions</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_competition_create">
+                <source>breadcrumb.link_competition_create</source>
+                <target>Créer une compétition</target>
+            </trans-unit>
+            <trans-unit id="filter.label_created">
+                <source>filter.label_created</source>
+                <target>Date de création</target>
+            </trans-unit>
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="filter.label_bowling">
+                <source>filter.label_bowling</source>
+                <target>Bowling</target>
+            </trans-unit>
+            <trans-unit id="filter.label_start">
+                <source>filter.label_start</source>
+                <target>Débute le</target>
+            </trans-unit>
+            <trans-unit id="filter.label_end">
+                <source>filter.label_end</source>
+                <target>Fini le</target>
+            </trans-unit>
+            <trans-unit id="filter.label_partners">
+                <source>filter.label_partners</source>
+                <target>Partenaires recherchés</target>
+            </trans-unit>
+            <trans-unit id="list.label_description">
+                <source>list.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="filter.label_author">
+                <source>filter.label_author</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="list.label_created">
+                <source>list.label_created</source>
+                <target>Créé le</target>
+            </trans-unit>
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="list.label_author">
+                <source>list.label_author</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="list.label_start">
+                <source>list.label_start</source>
+                <target>Débute le</target>
+            </trans-unit>
+            <trans-unit id="list.label_end">
+                <source>list.label_end</source>
+                <target>Fini le</target>
+            </trans-unit>
+            <trans-unit id="list.label_partners">
+                <source>list.label_partners</source>
+                <target>Partenaires recherchés</target>
+            </trans-unit>
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="form.label_description">
+                <source>form.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="form.label_bowling">
+                <source>form.label_bowling</source>
+                <target>Bowling</target>
+            </trans-unit>
+            <trans-unit id="form.label_start">
+                <source>form.label_start</source>
+                <target>Débute le</target>
+            </trans-unit>
+            <trans-unit id="form.label_partners">
+                <source>form.label_partners</source>
+                <target>Partenaires recherchés</target>
+            </trans-unit>
+            <trans-unit id="form.label_end">
+                <source>form.label_end</source>
+                <target>Fini le</target>
+            </trans-unit>
+            <trans-unit id="tab_competition">
+                <source>tab_competition</source>
+                <target>Compétition</target>
+            </trans-unit>
+            <trans-unit id="tab_publish">
+                <source>tab_publish</source>
+                <target>Publication</target>
+            </trans-unit>
+            <trans-unit id="show.label_title">
+                <source>show.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="show.label_description">
+                <source>show.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="show.label_created">
+                <source>show.label_created</source>
+                <target>Créé le</target>
+            </trans-unit>
+            <trans-unit id="show.label_bowling">
+                <source>show.label_bowling</source>
+                <target>Bowling</target>
+            </trans-unit>
+            <trans-unit id="show.label_partners">
+                <source>show.label_partners</source>
+                <target>Partenaires recherchés</target>
+            </trans-unit>
+            <trans-unit id="show.label_author">
+                <source>show.label_author</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="show.label_start">
+                <source>show.label_start</source>
+                <target>Débute le</target>
+            </trans-unit>
+            <trans-unit id="show.label_end">
+                <source>show.label_end</source>
+                <target>Fini le</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

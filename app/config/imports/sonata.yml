@@ -1,3 +1,7 @@
+twig:
+    form_themes:
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
+
 # Sonata Block Configuration
 sonata_block:
     default_contexts: [site]
@@ -33,7 +37,7 @@ sonata_admin:
                 color:  bg-yellow
 
             - position: top
-              class:    col-lg-3 col-xs-6
+              class:    col-lg-2 col-xs-6
               type:     sonata.admin.block.stats
               roles:    [ROLE_PAGE_READER]
               settings:
@@ -43,7 +47,7 @@ sonata_admin:
                 color:  bg-green
 
             - position: top
-              class:    col-lg-3 col-xs-6
+              class:    col-lg-2 col-xs-6
               type:     sonata.admin.block.stats
               roles:    [ROLE_USER_READER]
               settings:
@@ -53,7 +57,7 @@ sonata_admin:
                 color:  bg-blue
 
             - position: top
-              class:    col-lg-3 col-xs-6
+              class:    col-lg-2 col-xs-6
               type:     sonata.admin.block.stats
               roles:    [ROLE_NEWSLETTER_READER]
               settings:
@@ -61,6 +65,16 @@ sonata_admin:
                 icon:   fa-send-o
                 text:   dashboard.stats.newsletter_text
                 color:  bg-red
+
+            - position: top
+              class:    col-lg-3 col-xs-6
+              type:     sonata.admin.block.stats
+              roles:    [ROLE_COMPETITION_READER]
+              settings:
+                code:   bcp.admin.competition
+                icon:   fa-calendar
+                text:   dashboard.stats.competition_text
+                color:  bg-yellow
 
             - position: left
               type:     sonata.admin.block.admin_list
@@ -90,3 +104,4 @@ sonata_admin:
                     - bcp.admin.user
                     - bcp.admin.newsletter
                     - bcp.admin.email
+                    - bcp.admin.competition

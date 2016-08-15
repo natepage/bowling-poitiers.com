@@ -1,0 +1,16 @@
+{% extends '@App/competition/base_index.html.twig' %}
+
+{% block content %}
+    {% for competition in competitions %}
+        {{ include('@App/competition/preview.html.twig') }}
+    {% else %}
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <div class="container">
+                    Aucune compétition pour le moment.
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {{ include('@App/competition/pagination.html.twig') }}
+{% endblock content %}

@@ -74,13 +74,25 @@ services:
               label_translator_strategy: sonata.admin.label.strategy.underscore
 
     bcp.admin.email:
-            class: AdminBundle\Admin\EmailAdmin
-            arguments:
-                - ~
-                - AdminBundle\Entity\Email
-                - AdminBundle:Email
-            tags:
-                - name: sonata.admin
-                  manager_type: orm
-                  label: dashboard.email_label
-                  label_translator_strategy: sonata.admin.label.strategy.underscore
+        class: AdminBundle\Admin\EmailAdmin
+        arguments:
+            - ~
+            - AdminBundle\Entity\Email
+            - AdminBundle:Email
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.email_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.competition:
+        class: AdminBundle\Admin\CompetitionAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Competition
+            - AdminBundle:Competition
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.competition_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore

@@ -1,0 +1,11 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if competition.author.id == app.user.id %}
+        <a href="{{ path('competitions_update', {
+            'display': display,
+            'id': competition.id,
+            'slug': competition.slug
+        }) }}" class="btn btn-success">
+            <i class="fa fa-pencil"></i><span class="hidden-xs">Modifier la compétition</span>
+        </a>
+    {% endif %}
+{% endif %}
