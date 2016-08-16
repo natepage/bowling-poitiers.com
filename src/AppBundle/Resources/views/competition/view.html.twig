@@ -3,6 +3,7 @@
 {% block header %}
     <div class="col-md-12">
         <div class="pull-right">
+            {{ include('@App/competition/buttons/feed_button.html.twig') }}
             {{ include('@App/competition/buttons/update_button.html.twig') }}
             {{ include('@App/competition/buttons/remove_button.html.twig') }}
             <a href="{{ path('competitions_messages_view', {

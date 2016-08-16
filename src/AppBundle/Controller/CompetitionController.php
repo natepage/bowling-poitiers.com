@@ -55,6 +55,8 @@ class CompetitionController extends Controller
 
         $template = '@App/competition/index_%s.html.twig';
 
+        dump($this->getUser());
+
         return $this->render(sprintf($template, $display), array(
             'competitions' => $competitions,
             'page' => $page,
@@ -203,6 +205,78 @@ class CompetitionController extends Controller
         }
 
         return array('form' => $form->createView(), 'competition' => $competition, 'display' => $display);
+    }
+
+    /**
+     * @Route(
+     *     "/{display}/feed/{id}/{slug}/{page}",
+     *     name="competitions_feed",
+     *     requirements={"display": "list|calendar", "id": "\d+", "page": "\d+"},
+     *     defaults={"display": "list", "page": 1}
+     * )
+     * @ParamConverter(
+     *     "competition",
+     *     options={"mapping": {"id": "id", "slug": "slug"}}
+     * )
+     * @Method("GET")
+     */
+    public function feedAction(Competition $competition, $display, $page)
+    {
+        if(!$this->isGranted('IS_AUTHENTICATED_FULLY')){
+            throw $this->createNotFoundException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $competition->addFollower($this->getUser());
+
+        $em->flush();
+
+        $msg = sprintf('Vous êtes maintenant abonné(e) à la compétition "%s"', $competition->getTitle());
+        $this->addFlash('success', $msg);
+
+        return $this->redirect($this->generateUrl('competitions_view', array(
+            'display' => $display,
+            'page' => $page,
+            'id' => $competition->getId(),
+            'slug' => $competition->getSlug()
+        )));
+    }
+
+    /**
+     * @Route(
+     *     "/{display}/unfeed/{id}/{slug}/{page}",
+     *     name="competitions_unfeed",
+     *     requirements={"display": "list|calendar", "id": "\d+", "page": "\d+"},
+     *     defaults={"display": "list", "page": 1}
+     * )
+     * @ParamConverter(
+     *     "competition",
+     *     options={"mapping": {"id": "id", "slug": "slug"}}
+     * )
+     * @Method("GET")
+     */
+    public function unfeedAction(Competition $competition, $display, $page)
+    {
+        if(!$this->isGranted('IS_AUTHENTICATED_FULLY')){
+            throw $this->createNotFoundException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $competition->removeFollower($this->getUser());
+
+        $em->flush();
+
+        $msg = sprintf('Vous n\'êtes plus abonné(e) à la compétition "%s"', $competition->getTitle());
+        $this->addFlash('success', $msg);
+
+        return $this->redirect($this->generateUrl('competitions_view', array(
+            'display' => $display,
+            'page' => $page,
+            'id' => $competition->getId(),
+            'slug' => $competition->getSlug()
+        )));
     }
 
     /**

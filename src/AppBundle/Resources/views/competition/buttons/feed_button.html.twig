@@ -1,0 +1,30 @@
+{% set feed = path('competitions_feed', {
+    'display': display,
+    'page': page,
+    'id': competition.id,
+    'slug': competition.slug
+}) %}
+
+{% set unfeed = path('competitions_unfeed', {
+    'display': display,
+    'page': page,
+    'id': competition.id,
+    'slug': competition.slug
+}) %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if competition.followers.contains(app.user) %}
+        {% set link = unfeed %}
+        {% set text = 'Se désabonner de la compétition' %}
+    {% else %}
+        {% set link = feed %}
+        {% set text = 'S\'abonner à la compétition' %}
+    {% endif %}
+{% else %}
+    {% set link = path('fos_user_security_login') %}
+    {% set text = 'S\'abonner à la compétition' %}
+{% endif %}
+
+<a href="{{ link }}" class="btn btn-info">
+    <i class="fa fa-rss"></i><span class="hidden-xs">{{ text }}</span>
+</a>

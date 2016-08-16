@@ -109,6 +109,14 @@ class Competition
      */
     private $messages;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="competitionsFollowed")
+     * @ORM\JoinTable(name="competitions_followers")
+     */
+    private $followers;
+
     public function __construct()
     {
         $this->created = new \DateTime();
@@ -386,5 +394,45 @@ class Competition
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Add follower
+     *
+     * @param \UserBundle\Entity\User $follower
+     *
+     * @return Competition
+     */
+    public function addFollower(\UserBundle\Entity\User $follower)
+    {
+        if(!$this->followers->contains($follower)){
+            $this->followers[] = $follower;
+
+            if(null !== $follower){
+                $follower->addCompetitionsFollowed($this);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove follower
+     *
+     * @param \UserBundle\Entity\User $follower
+     */
+    public function removeFollower(\UserBundle\Entity\User $follower)
+    {
+        $this->followers->removeElement($follower);
+    }
+
+    /**
+     * Get followers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
     }
 }

@@ -92,6 +92,13 @@ class User extends ModelUser
      */
     protected $competitionMessages;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Competition", mappedBy="followers")
+     */
+    protected $competitionsFollowed;
+
     public function __construct()
     {
         parent::__construct();
@@ -358,5 +365,39 @@ class User extends ModelUser
     public function getCompetitionMessages()
     {
         return $this->competitionMessages;
+    }
+
+    /**
+     * Add competitionsFollowed
+     *
+     * @param \AppBundle\Entity\Competition $competitionsFollowed
+     *
+     * @return User
+     */
+    public function addCompetitionsFollowed(\AppBundle\Entity\Competition $competitionsFollowed)
+    {
+        $this->competitionsFollowed[] = $competitionsFollowed;
+
+        return $this;
+    }
+
+    /**
+     * Remove competitionsFollowed
+     *
+     * @param \AppBundle\Entity\Competition $competitionsFollowed
+     */
+    public function removeCompetitionsFollowed(\AppBundle\Entity\Competition $competitionsFollowed)
+    {
+        $this->competitionsFollowed->removeElement($competitionsFollowed);
+    }
+
+    /**
+     * Get competitionsFollowed
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetitionsFollowed()
+    {
+        return $this->competitionsFollowed;
     }
 }

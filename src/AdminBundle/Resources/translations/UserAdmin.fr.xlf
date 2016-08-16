@@ -138,6 +138,18 @@
                 <source>show.label_newsletter</source>
                 <target>Inscrit à la newsletter</target>
             </trans-unit>
+            <trans-unit id="tab_competitions">
+                <source>tab_competitions</source>
+                <target>Compétitions</target>
+            </trans-unit>
+            <trans-unit id="show.label_competitions">
+                <source>show.label_competitions</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="show.label_competitions_followed">
+                <source>show.label_competitions_followed</source>
+                <target>Abonnements</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

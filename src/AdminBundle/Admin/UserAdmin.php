@@ -137,6 +137,12 @@ class UserAdmin extends AbstractAdmin
                     'template' => 'UserBundle:CRUD/Show:field_roles.html.twig'
                 ))
             ->end()
+            ->with('tab_competitions', array(
+                'class' => 'col-md-12'
+            ))
+                ->add('competitions')
+                ->add('competitionsFollowed')
+            ->end()
         ;
     }
     
