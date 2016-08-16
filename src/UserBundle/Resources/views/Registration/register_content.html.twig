@@ -5,59 +5,11 @@
 {% endif %}
 
 <form action="" method="POST" class="fos_user_registration_register form-horizontal">
-    <div class="form-group{% if form_errors(form.email) %} has-error{% endif %}"
-         style="margin-left: 0; margin-right: 0;">
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-        {% if form_errors(form.email) %}
-            <span class="help-block">{{ form_errors(form.email) }}</span>
-        {% endif %}
-    </div>
-
-    <div class="form-group{% if form_errors(form.username) %} has-error{% endif %}"
-         style="margin-left: 0; margin-right: 0;">
-        {{ form_label(form.username) }}
-        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
-        {% if form_errors(form.username) %}
-            <span class="help-block">{{ form_errors(form.username) }}</span>
-        {% endif %}
-    </div>
-
-    <div class="form-group{% if form_errors(form.plainPassword.first) %} has-error{% endif %}"
-         style="margin-left: 0; margin-right: 0;">
-        {{ form_label(form.plainPassword.first) }}
-        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-        {% if form_errors(form.plainPassword.first) %}
-            <span class="help-block">{{ form_errors(form.plainPassword.first) }}</span>
-        {% endif %}
-    </div>
-
-    <div class="form-group{% if form_errors(form.plainPassword.second) %} has-error{% endif %}"
-         style="margin-left: 0; margin-right: 0;">
-        {{ form_label(form.plainPassword.second) }}
-        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-        {% if form_errors(form.plainPassword.second) %}
-            <span class="help-block">{{ form_errors(form.plainPassword.second) }}</span>
-        {% endif %}
-    </div>
-
-    <div class="form-group{% if form_errors(form.licence) %} has-error{% endif %}"
-         style="margin-left: 0; margin-right: 0;">
-        {{ form_label(form.licence) }}
-        {{ form_widget(form.licence, {'attr': {'class': 'form-control'}}) }}
-        {% if form_errors(form.licence) %}
-            <span class="help-block">{{ form_errors(form.licence) }}</span>
-        {% endif %}
-    </div>
-
-    <div class="form-group{% if form_errors(form.newsletter) %} has-error{% endif %}"
-         style="margin-left: 0; margin-right: 0;">
-        {{ form_widget(form.newsletter) }} {{ form_label(form.newsletter) }}
-        {% if form_errors(form.newsletter) %}
-            <span class="help-block">{{ form_errors(form.newsletter) }}</span>
-        {% endif %}
-    </div>
-
+    {{ form_row(form.email) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    {{ form_row(form.newsletter, {'attr': {'style': 'display: block;'}}) }}
     {{ form_rest(form) }}
 
     <hr>

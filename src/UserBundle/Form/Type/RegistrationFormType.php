@@ -13,10 +13,6 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('licence', TextType::class, array(
-                'required' => false,
-                'label' => 'N° de licence'
-            ))
             ->add('newsletter', CheckboxType::class, array(
                 'required' => false,
                 'label' => 'J\'accepte de recevoir des mails de la part de l\'équipe du BCP pour m\'informer des nouveautés.'
