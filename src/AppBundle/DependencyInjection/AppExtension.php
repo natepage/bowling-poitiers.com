@@ -34,5 +34,6 @@ class AppExtension extends Extension
         $services = $env == 'dev' ? 'services_' . $env . '.yml' : 'services.yml';
 
         $loader->load($services);
+        $loader->load('listeners.yml');
     }
 }

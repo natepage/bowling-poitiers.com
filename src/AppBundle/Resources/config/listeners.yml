@@ -1,0 +1,5 @@
+services:
+    bcp.competitions_listener:
+        class: AppBundle\EventListeners\CompetitionListener
+        tags:
+            - { name: kernel.event_subscriber }

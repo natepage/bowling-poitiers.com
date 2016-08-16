@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppEvents;
 use AppBundle\Entity\Competition;
 use AppBundle\Entity\CompetitionMessage;
+use AppBundle\Event\CompetitionEvent;
+use AppBundle\Event\CompetitionMessageEvent;
 use AppBundle\Form\CompetitionMessageType;
 use AppBundle\Form\CompetitionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -106,6 +109,9 @@ class CompetitionController extends Controller
             $em->persist($competition);
             $em->flush();
 
+            $event = new CompetitionEvent($competition);
+            $this->get('event_dispatcher')->dispatch(AppEvents::COMPETITION_CREATE_EVENT, $event);
+
             $msg = sprintf('Votre compétition "%s" a été créée avec succès !', $competition->getTitle());
             $this->addFlash('success', $msg);
 
@@ -146,6 +152,9 @@ class CompetitionController extends Controller
             $this->manageSlug($competition);
 
             $em->flush();
+
+            $event = new CompetitionEvent($competition);
+            $this->get('event_dispatcher')->dispatch(AppEvents::COMPETITION_UPDATE_EVENT, $event);
 
             $msg = sprintf('Votre compétition "%s" a été modifiée avec succès !', $competition->getTitle());
             $this->addFlash('success', $msg);
@@ -195,6 +204,9 @@ class CompetitionController extends Controller
 
             $em->remove($competition);
             $em->flush();
+
+            $event = new CompetitionEvent($competition);
+            $this->get('event_dispatcher')->dispatch(AppEvents::COMPETITION_REMOVE_EVENT, $event);
 
             $msg = sprintf('Votre compétition "%s" a été supprimée avec succès !', $competition->getTitle());
             $this->addFlash('success', $msg);
@@ -368,6 +380,9 @@ class CompetitionController extends Controller
             $em->persist($message);
             $em->flush();
 
+            $event = new CompetitionMessageEvent($message);
+            $this->get('event_dispatcher')->dispatch(AppEvents::COMPETITION_MESSAGE_CREATE_EVENT, $event);
+
             $this->addFlash('success', 'Votre message a été correctement publié !');
 
             return $this->redirect($this->generateUrl('competitions_messages_view', array(
@@ -433,6 +448,9 @@ class CompetitionController extends Controller
 
             $em->remove($message);
             $em->flush();
+
+            $event = new CompetitionMessageEvent($message);
+            $this->get('event_dispatcher')->dispatch(AppEvents::COMPETITION_MESSAGE_REMOVE_EVENT, $event);
 
             $this->addFlash('success', 'Votre message a été correctement supprimé !');
 
