@@ -12,19 +12,23 @@
     'slug': competition.slug
 }) %}
 
+{% set text = 'S\'abonner à la compétition' %}
+{% set class = 'success' %}
+
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     {% if competition.followers.contains(app.user) %}
         {% set link = unfeed %}
         {% set text = 'Se désabonner de la compétition' %}
+        {% set class = 'warning' %}
     {% else %}
         {% set link = feed %}
-        {% set text = 'S\'abonner à la compétition' %}
     {% endif %}
 {% else %}
     {% set link = path('fos_user_security_login') %}
-    {% set text = 'S\'abonner à la compétition' %}
 {% endif %}
 
-<a href="{{ link }}" class="btn btn-info">
-    <i class="fa fa-rss"></i><span class="hidden-xs">{{ text }}</span>
-</a>
+{% if competition.author.id != app.user.id %}
+    <a href="{{ link }}" class="btn btn-{{ class }}">
+        <i class="fa fa-rss"></i><span class="hidden-xs">{{ text }}</span>
+    </a>
+{% endif %}

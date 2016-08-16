@@ -41,6 +41,18 @@ class CompetitionController extends Controller
     );
 
     /**
+     * @var array
+     */
+    private $calendarClasses = array(
+        'event-important',
+        'event-info',
+        'event-warning',
+        'event-inverse',
+        'event-success',
+        'event-special'
+    );
+
+    /**
      * @Route(
      *     "/{display}/{page}",
      *     name="competitions_index",
@@ -51,20 +63,69 @@ class CompetitionController extends Controller
      */
     public function indexAction($display, $page)
     {
-        $query = $this->getDoctrine()->getRepository('AppBundle:Competition')->getIndexQuery();
-        $paginator = $this->get('knp_paginator');
-        $limit = self::COMPETITIONS_PER_PAGE;
-        $competitions = $paginator->paginate($query, $page, $limit);
-
         $template = '@App/competition/index_%s.html.twig';
 
-        return $this->render(sprintf($template, $display), array(
-            'competitions' => $competitions,
-            'page' => $page,
-            'display' => $display,
-            'switchDisplay' => $this->switchDisplay[$display],
-            'limit' => $limit
-        ));
+        switch($display){
+            case 'calendar':
+                return $this->render(sprintf($template, $display), array(
+                    'page' => $page,
+                    'display' => $display,
+                    'switchDisplay' => $this->switchDisplay[$display]
+                ));
+                break;
+            case 'list':
+                $query = $this->getDoctrine()->getRepository('AppBundle:Competition')->getIndexQuery();
+                $paginator = $this->get('knp_paginator');
+                $limit = self::COMPETITIONS_PER_PAGE;
+                $competitions = $paginator->paginate($query, $page, $limit);
+
+                return $this->render(sprintf($template, $display), array(
+                    'competitions' => $competitions,
+                    'page' => $page,
+                    'display' => $display,
+                    'switchDisplay' => $this->switchDisplay[$display],
+                    'limit' => $limit
+                ));
+                break;
+        }
+    }
+
+    /**
+     * @Route(
+     *     "/calendar/ajax/index",
+     *     name="competitions_ajax_index"
+     * )
+     * @Method("GET")
+     */
+    public function ajaxCompetitionsAction()
+    {
+        $competitions = $this->getDoctrine()->getManager()
+                                            ->getRepository('AppBundle:Competition')
+                                            ->findAll();
+
+        $response = array();
+        $i = 0;
+        foreach($competitions as $competition){
+            $competitionArray = $competition->toArray();
+
+            $competitionArray['url'] = $this->generateUrl('competitions_view', array(
+                'display' => 'calendar',
+                'page' => 1,
+                'id' => $competition->getId(),
+                'slug' => $competition->getSlug()
+            ));
+
+            $competitionArray['class'] = $this->calendarClasses[$i];
+            $i++;
+
+            if($i == 6){
+                $i = 0;
+            }
+
+            $response[] = $competitionArray;
+        }
+
+        return $this->json(array('success' => 1, 'result' => $response));
     }
 
     /**

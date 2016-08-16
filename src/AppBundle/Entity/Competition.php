@@ -435,4 +435,17 @@ class Competition
     {
         return $this->followers;
     }
+
+    public function toArray()
+    {
+        return array(
+            'id' => $this->id,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'bowling' => $this->bowling,
+            'author' => $this->author->getUsername(),
+            'start' => (string) $this->start->getTimestamp() . '000',
+            'end' => (string) $this->end->getTimestamp() . '000'
+        );
+    }
 }
