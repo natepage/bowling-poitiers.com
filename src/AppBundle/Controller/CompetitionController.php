@@ -55,8 +55,6 @@ class CompetitionController extends Controller
 
         $template = '@App/competition/index_%s.html.twig';
 
-        dump($this->getUser());
-
         return $this->render(sprintf($template, $display), array(
             'competitions' => $competitions,
             'page' => $page,
@@ -169,10 +167,10 @@ class CompetitionController extends Controller
 
     /**
      * @Route(
-     *     "/{display}/remove/{id}/{slug}",
+     *     "/{display}/remove/{id}/{slug}/{page}",
      *     name="competitions_remove",
-     *     requirements={"display": "list|calendar", "id": "\d+"},
-     *     defaults={"display": "list"}
+     *     requirements={"display": "list|calendar", "id": "\d+", "page": "\d+"},
+     *     defaults={"display": "list", "page": 1}
      * )
      * @ParamConverter(
      *     "competition",
@@ -181,7 +179,7 @@ class CompetitionController extends Controller
      * @Method({"GET", "POST"})
      * @Template
      */
-    public function removeAction(Request $request, Competition $competition, $display)
+    public function removeAction(Request $request, Competition $competition, $display, $page)
     {
         $authorId = $competition->getAuthor()->getId();
         $currentUserId = $this->getUser()->getId();
@@ -201,10 +199,18 @@ class CompetitionController extends Controller
             $msg = sprintf('Votre compétition "%s" a été supprimée avec succès !', $competition->getTitle());
             $this->addFlash('success', $msg);
 
-            return $this->redirect($this->generateUrl('competitions_index', array('display' => $display)));
+            return $this->redirect($this->generateUrl('competitions_index', array(
+                'display' => $display,
+                'page' => $page
+            )));
         }
 
-        return array('form' => $form->createView(), 'competition' => $competition, 'display' => $display);
+        return array(
+            'form' => $form->createView(),
+            'competition' => $competition,
+            'display' => $display,
+            'page' => $page
+        );
     }
 
     /**
