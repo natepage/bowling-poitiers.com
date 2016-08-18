@@ -18,9 +18,17 @@
                 <source>breadcrumb.link_post_create</source>
                 <target>Créer un article</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_post_delete">
+                <source>breadcrumb.link_post_delete</source>
+                <target>Supprimer un article</target>
+            </trans-unit>
             <trans-unit id="filter.label_author_name">
                 <source>filter.label_author_name</source>
                 <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="filter.label_categories">
+                <source>filter.label_categories</source>
+                <target>Catégories</target>
             </trans-unit>
             <trans-unit id="filter.label_created">
                 <source>filter.label_created</source>
@@ -50,6 +58,10 @@
                 <source>list.label_author_name</source>
                 <target>Auteur</target>
             </trans-unit>
+            <trans-unit id="list.label_categories">
+                <source>list.label_categories</source>
+                <target>Catégories</target>
+            </trans-unit>
             <trans-unit id="list.label_published">
                 <source>list.label_published</source>
                 <target>Publié</target>
@@ -69,6 +81,10 @@
             <trans-unit id="form.label_content">
                 <source>form.label_content</source>
                 <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="form.label_categories">
+                <source>form.label_categories</source>
+                <target>Catégories</target>
             </trans-unit>
             <trans-unit id="tab_post">
                 <source>tab_post</source>
@@ -124,6 +140,10 @@
             <trans-unit id="show.label_content">
                 <source>show.label_content</source>
                 <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="show.label_categories">
+                <source>show.label_categories</source>
+                <target>Catégories</target>
             </trans-unit>
             <trans-unit id="show.label_created">
                 <source>show.label_created</source>

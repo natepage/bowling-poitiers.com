@@ -14,6 +14,10 @@
                 <source>breadcrumb.link_email_create</source>
                 <target>Création d'un email</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_email_delete">
+                <source>breadcrumb.link_email_delete</source>
+                <target>Supprimer un email</target>
+            </trans-unit>
             <trans-unit id="batch_action_send_email">
                 <source>batch_action_send_email</source>
                 <target>Envoyer</target>

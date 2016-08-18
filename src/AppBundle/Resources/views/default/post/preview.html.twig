@@ -11,6 +11,13 @@
                 <small class="subtitle">{{ post.authorName }}, le {{ post.created|date('d/m/Y') }}</small>
             </h5>
             <span class="text-muted">{{ post.description }}</span>
+            <div class="post-categories-ctn">
+                {% for category in post.categories %}
+                    <a href="{{ path('category', {'slug': category.slug}) }}" class="badge badge-category">
+                        {{ category.title }}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
     </a>
 </div>

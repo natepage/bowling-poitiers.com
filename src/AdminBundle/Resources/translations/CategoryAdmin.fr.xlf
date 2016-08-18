@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.category_label">
+                <source>dashboard.category_label</source>
+                <target>Catégorie</target>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.category_text">
+                <source>dashboard.stats.category_text</source>
+                <target>Catégories</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_category_list">
+                <source>breadcrumb.link_category_list</source>
+                <target>Liste des catégories</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_category_create">
+                <source>breadcrumb.link_category_create</source>
+                <target>Créer un catégorie</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_category_delete">
+                <source>breadcrumb.link_category_delete</source>
+                <target>Supprimer une catégorie</target>
+            </trans-unit>
+            <trans-unit id="filter.label_created">
+                <source>filter.label_created</source>
+                <target>Date de création</target>
+            </trans-unit>
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="list.label_posts_count">
+                <source>list.label_posts_count</source>
+                <target>Nombre d'articles</target>
+            </trans-unit>
+            <trans-unit id="form.tab_category">
+                <source>form.tab_category</source>
+                <target>Catégorie</target>
+            </trans-unit>
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="tab_category">
+                <source>tab_category</source>
+                <target>Catégorie</target>
+            </trans-unit>
+            <trans-unit id="tab_posts">
+                <source>tab_posts</source>
+                <target>Articles</target>
+            </trans-unit>
+            <trans-unit id="show.label_title">
+                <source>show.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="show.label_posts">
+                <source>show.label_posts</source>
+                <target>Articles</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

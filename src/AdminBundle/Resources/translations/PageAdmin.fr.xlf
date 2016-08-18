@@ -18,6 +18,10 @@
                 <source>breadcrumb.link_page_create</source>
                 <target>Créer un page</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_page_delete">
+                <source>breadcrumb.link_page_delete</source>
+                <target>Supprimer une page</target>
+            </trans-unit>
             <trans-unit id="filter.label_author_name">
                 <source>filter.label_author_name</source>
                 <target>Auteur</target>

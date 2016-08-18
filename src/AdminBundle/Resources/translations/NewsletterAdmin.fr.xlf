@@ -14,6 +14,10 @@
                 <source>breadcrumb.link_newsletter_list</source>
                 <target>Liste des inscrit à la newsletter</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_newsletter_delete">
+                <source>breadcrumb.link_newsletter_delete</source>
+                <target>Supprimer une adresse de newsletter</target>
+            </trans-unit>
             <trans-unit id="list.label_mail">
                 <source>list.label_mail</source>
                 <target>Email</target>

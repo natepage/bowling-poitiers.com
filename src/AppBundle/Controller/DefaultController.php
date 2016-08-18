@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Page;
 use AppBundle\Entity\Post;
@@ -31,6 +32,22 @@ class DefaultController extends Controller
         $posts = $paginator->paginate($query, $page, $limit);
 
         return array('posts' => $posts);
+    }
+
+    /**
+     * @Route("/categorie/{slug}", name="category")
+     * @ParamConverter("category", options={"slug": "slug"})
+     * @Template("@App/default/category/index.html.twig")
+     */
+    public function categoryAction(Request $request, Category $category)
+    {
+        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->getCategoryQuery($category->getId());
+        $paginator = $this->get('knp_paginator');
+        $page = $request->query->getInt('page', 1);
+        $limit = 10;
+        $posts = $paginator->paginate($query, $page, $limit);
+
+        return array('posts' => $posts, 'category' => $category);
     }
 
     /**

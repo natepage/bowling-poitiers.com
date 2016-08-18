@@ -18,6 +18,10 @@
                 <source>breadcrumb.link_competition_create</source>
                 <target>Créer une compétition</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_competition_delete">
+                <source>breadcrumb.link_competition_delete</source>
+                <target>Supprimer une compétition</target>
+            </trans-unit>
             <trans-unit id="filter.label_created">
                 <source>filter.label_created</source>
                 <target>Date de création</target>

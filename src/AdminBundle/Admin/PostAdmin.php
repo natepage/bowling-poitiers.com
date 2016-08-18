@@ -79,6 +79,7 @@ class PostAdmin extends AbstractAdmin
                     ),
                     'required' => false
                 ))
+                ->add('categories')
             ->end()
             ->with('tab_publish', array(
                 'class' => 'col-md-4'
@@ -121,6 +122,7 @@ class PostAdmin extends AbstractAdmin
             ->add('created', 'datetime', array('format' => 'd/m/Y, H:i'))
             ->addIdentifier('title')
             ->add('authorName')
+            ->add('categories')
             ->add('published')
             ->add('sharedNewsletter', 'datetime', array('format' => 'd/m/Y, H:i'))
         ;
@@ -132,6 +134,7 @@ class PostAdmin extends AbstractAdmin
             ->add('created')
             ->add('title')
             ->add('authorName')
+            ->add('categories')
             ->add('published')
         ;
     }
@@ -145,6 +148,7 @@ class PostAdmin extends AbstractAdmin
                 ->add('title')
                 ->add('description')
                 ->add('content', null, array('safe' => true))
+                ->add('categories')
             ->end()
             ->with('tab_publish', array(
                 'class' => 'col-md-4'

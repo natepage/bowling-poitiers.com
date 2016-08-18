@@ -23,4 +23,22 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery();
     }
+
+    /**
+     * Get category's query
+     *
+     * @param integer $id
+     * @return \Doctrine\ORM\Query
+     */
+    public function getCategoryQuery($id)
+    {
+        $qb = $this->createQueryBuilder('p')
+                   ->leftJoin('p.categories', 'c')
+                   ->where('c.id = :id')
+                   ->andWhere('p.published = 1')
+                   ->orderBy('p.created', 'DESC')
+                   ->setParameter('id', $id);
+
+        return $qb->getQuery();
+    }
 }

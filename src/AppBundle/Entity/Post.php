@@ -132,6 +132,14 @@ class Post
     private $fbId;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="posts")
+     * @ORM\JoinTable(name="posts_categories")
+     */
+    private $categories;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -609,5 +617,43 @@ class Post
         }
 
         return $this->images->first();
+    }
+
+    /**
+     * Add category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Post
+     */
+    public function addCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        if(null !== $category){
+            $category->addPost($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \AppBundle\Entity\Category $category
+     */
+    public function removeCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

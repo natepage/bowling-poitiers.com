@@ -27,7 +27,7 @@ sonata_admin:
     dashboard:
         blocks:
             - position: top
-              class:    col-lg-3 col-xs-6
+              class:    col-lg-2 col-xs-6
               type:     sonata.admin.block.stats
               roles:    [ROLE_POST_READER]
               settings:
@@ -35,6 +35,16 @@ sonata_admin:
                 icon:   fa-newspaper-o
                 text:   dashboard.stats.post_text
                 color:  bg-yellow
+
+            - position: top
+              class:    col-lg-2 col-xs-6
+              type:     sonata.admin.block.stats
+              roles:    [ROLE_CATEGORY_READER]
+              settings:
+                code:   bcp.admin.category
+                icon:   fa-folder-o
+                text:   dashboard.stats.category_text
+                color:  bg-red
 
             - position: top
               class:    col-lg-2 col-xs-6
@@ -67,7 +77,7 @@ sonata_admin:
                 color:  bg-red
 
             - position: top
-              class:    col-lg-3 col-xs-6
+              class:    col-lg-2 col-xs-6
               type:     sonata.admin.block.stats
               roles:    [ROLE_COMPETITION_READER]
               settings:
@@ -94,6 +104,7 @@ sonata_admin:
                 label_catalogue: DashboardAdmin
                 icon: <i class="fa fa-folder"></i>
                 items:
+                    - bcp.admin.category
                     - bcp.admin.post
                     - bcp.admin.page
             administration:

@@ -18,6 +18,10 @@
                 <source>breadcrumb.link_user_create</source>
                 <target>Créer un utilisateur</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_user_delete">
+                <source>breadcrumb.link_user_delete</source>
+                <target>Supprimer un utilisateur</target>
+            </trans-unit>
             <trans-unit id="list.label_username">
                 <source>list.label_username</source>
                 <target>Identifiant</target>
