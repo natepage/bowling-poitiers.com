@@ -4,13 +4,7 @@
     {% for competition in competitions %}
         {{ include('@App/competition/preview.html.twig') }}
     {% else %}
-        <div class="col-md-12">
-            <div class="alert alert-info">
-                <div class="container">
-                    Aucune compétition pour le moment.
-                </div>
-            </div>
-        </div>
+        {{ include('@App/competition/empty_alert.html.twig') }}
     {% endfor %}
     {{ include('@App/competition/pagination.html.twig') }}
 {% endblock content %}

@@ -64,21 +64,21 @@ class CompetitionController extends Controller
     public function indexAction($display, $page)
     {
         $template = '@App/competition/index_%s.html.twig';
+        $query = $this->getDoctrine()->getRepository('AppBundle:Competition')->getIndexQuery();
+        $paginator = $this->get('knp_paginator');
+        $limit = self::COMPETITIONS_PER_PAGE;
+        $competitions = $paginator->paginate($query, $page, $limit);
 
         switch($display){
             case 'calendar':
                 return $this->render(sprintf($template, $display), array(
                     'page' => $page,
                     'display' => $display,
-                    'switchDisplay' => $this->switchDisplay[$display]
+                    'switchDisplay' => $this->switchDisplay[$display],
+                    'competitionsCount' => $competitions->count()
                 ));
                 break;
             case 'list':
-                $query = $this->getDoctrine()->getRepository('AppBundle:Competition')->getIndexQuery();
-                $paginator = $this->get('knp_paginator');
-                $limit = self::COMPETITIONS_PER_PAGE;
-                $competitions = $paginator->paginate($query, $page, $limit);
-
                 return $this->render(sprintf($template, $display), array(
                     'competitions' => $competitions,
                     'page' => $page,
@@ -87,6 +87,8 @@ class CompetitionController extends Controller
                     'limit' => $limit
                 ));
                 break;
+            default:
+                throw $this->createNotFoundException();
         }
     }
 

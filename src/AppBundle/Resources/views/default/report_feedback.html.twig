@@ -1,0 +1,32 @@
+{% extends '@App/default/view.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title text-center">
+                    Envoyez nous votre remarque ou réclamations !
+                </h1>
+                {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.content) }}
+                    <button type="submit" class="btn btn-success pull-right">
+                        <i class="fa fa-send"></i> Envoyer
+                    </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/assets/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            CKEDITOR.replace('report_feedback_content', {
+                toolbar: 'Front'
+            });
+        });
+    </script>
+{% endblock javascripts %}

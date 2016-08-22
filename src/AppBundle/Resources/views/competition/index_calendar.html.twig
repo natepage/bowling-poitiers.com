@@ -6,6 +6,9 @@
 {% endblock stylesheets %}
 
 {% block content %}
+    {% if competitionsCount == 0 %}
+        {{ include('@App/competition/empty_alert.html.twig') }}
+    {% endif %}
     {{ include('@App/competition/calendar/navigation.html.twig') }}
     <div class="row cancel-margin" style="margin: 10px 0;">
         <div class="col-md-12">

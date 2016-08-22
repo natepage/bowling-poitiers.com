@@ -4,9 +4,11 @@
     <div class="container body-ctn">
         <div class="row">
             <div class="col-md-8">
-                <h1 class="title-like">
-                    Articles de la catégorie : {{ category.title|upper }}
-                </h1>
+                <div class="row">
+                    <h1 class="title-like">
+                        Articles de la catégorie : {{ category.title|upper }}
+                    </h1>
+                </div>
                 {% for post in posts %}
                     {{ include('@App/default/post/preview.html.twig') }}
                 {% else %}

@@ -28,6 +28,18 @@
     text-align: center;
 }
 
+.alert-img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.alert-content {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 60px;
+    font-size: 20px;
+}
+
 /* View */
 .view-ctn {
     background-color: #fff;
@@ -98,7 +110,13 @@
 
 .post-categories-ctn .badge-category {
     background-color: rgba(255, 76, 64, 0.98);
+    border: 1px solid rgba(255, 76, 64, 0.98);
     text-transform: uppercase;
+}
+
+.post-categories-ctn .badge-category:hover {
+    background-color: #FFFFFF;
+    color: rgba(255, 76, 64, 0.98);
 }
 
 /* Competition list */

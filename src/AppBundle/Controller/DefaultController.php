@@ -6,6 +6,7 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Page;
 use AppBundle\Entity\Post;
+use AppBundle\Form\ReportFeedbackType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -193,6 +194,43 @@ class DefaultController extends Controller
         }
 
         return $this->redirect($this->generateUrl('homepage'));
+    }
+
+    /**
+     * @Route("/report/feedback", name="report_feedback")
+     * @Method({"GET", "POST"})
+     * @Template("@App/default/report_feedback.html.twig")
+     */
+    public function reportFeedbackAction(Request $request)
+    {
+        $datas = array();
+
+        if($this->isGranted('IS_AUTHENTICATED_FULLY')){
+            $user = $this->getUser();
+
+            $datas['email'] = $user->getEmail();
+        }
+
+        $form = $this->createForm(ReportFeedbackType::class, $datas);
+
+        if($form->handleRequest($request)->isValid()){
+            $mailer = $this->get('bcp.email_sender');
+            $from = $this->getParameter('newsletter_from');
+            $to = 'nathan.page86@gmail.com';
+            $subject = 'Feedback';
+
+            $email = $form->get('email')->getData();
+            $content = $form->get('content')->getData();
+            $body = sprintf('<p><b>%s</b></p>%s', $email, $content);
+
+            $mailer->send($from, array($to), $subject, $body);
+
+            $this->addFlash('success', 'Votre remarque a été correctement envoyée !');
+
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
+        return array('form' => $form->createView());
     }
 
     /**
