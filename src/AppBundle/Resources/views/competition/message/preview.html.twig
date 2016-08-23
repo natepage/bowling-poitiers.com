@@ -14,8 +14,16 @@
                         </a>
                     {% endif %}
                     <h5 class="title">
+                        {% if message.author.id != app.user.id %}
+                            <a href="mailto:{{ message.author.email }}?subject={{ competition.title }}">
+                        {% endif %}
+
                         {{ message.author.username }}
                         <small class="subtitle">le {{ message.created|date('d/m/Y, H:i:s') }}</small>
+
+                        {% if message.author.id != app.user.id %}
+                            </a>
+                        {% endif %}
                     </h5>
                     {{ message.content|raw }}
                 </div>

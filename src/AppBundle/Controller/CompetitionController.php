@@ -142,7 +142,7 @@ class CompetitionController extends Controller
      *     options={"mapping": {"id": "id", "slug": "slug"}}
      * )
      * @Method("GET")
-     * @Template
+     * @Template("@App/competition/view.html.twig")
      */
     public function viewAction(Competition $competition, $display, $page){}
 
@@ -249,7 +249,7 @@ class CompetitionController extends Controller
      *     options={"mapping": {"id": "id", "slug": "slug"}}
      * )
      * @Method({"GET", "POST"})
-     * @Template
+     * @Template("@App/competition/remove.html.twig")
      */
     public function removeAction(Request $request, Competition $competition, $display, $page)
     {

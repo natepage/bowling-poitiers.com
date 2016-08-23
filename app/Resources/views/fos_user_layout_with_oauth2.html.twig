@@ -39,7 +39,7 @@
                 </div>
                 <div class="panel-body text-center">
                     {% for owner in hwi_oauth_resource_owners() %}
-                        <a href="{{ hwi_oauth_login_url(owner) }}" class="btn btn-round btn-social btn-{{ owner }}">
+                        <a href="{{ hwi_oauth_login_url(owner) }}" class="btn btn-round btn-social btn-{{ owner }}" style="display: block;">
                             <i class="fa fa-{{ owner }}"></i> {{ owner | trans({}, 'HWIOAuthBundle') }}
                         </a>
                     {% endfor %}

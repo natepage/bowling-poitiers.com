@@ -160,6 +160,7 @@ security:
             oauth:
                 resource_owners:
                     facebook: /oauth2/login/check_facebook
+                    google:   /oauth2/login/check_google
                 login_path:   /oauth2/login
                 use_forward:  false
                 failure_path: /oauth2/login

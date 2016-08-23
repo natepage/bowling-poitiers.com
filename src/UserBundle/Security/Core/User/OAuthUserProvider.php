@@ -5,8 +5,8 @@ namespace UserBundle\Security\Core\User;
 use FOS\UserBundle\Model\UserManagerInterface;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 
 class OAuthUserProvider implements OAuthAwareUserProviderInterface
 {
@@ -27,7 +27,7 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface
      *
      * @return UserInterface
      *
-     * @throws UsernameNotFoundException if the user is not found
+     * @throws AccountNotLinkedException if the user is not found
      * @throws \RuntimeException if user class has not setter for resource owner property
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
@@ -35,7 +35,7 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface
         $email = $response->getEmail();
 
         if(null === $user = $this->userManager->findUserByEmail($email)){
-            throw new UsernameNotFoundException(sprintf('User with email [%s] not found.', $email));
+            throw new AccountNotLinkedException(sprintf('User with email [%s] not found.', $email));
         }
 
         $resourceOwnerName = $response->getResourceOwner()->getName();
