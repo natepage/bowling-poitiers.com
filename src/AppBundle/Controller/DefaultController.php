@@ -22,7 +22,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
-     * @Template
+     * @Template("@App/default/index.html.twig")
      */
     public function indexAction(Request $request)
     {
@@ -53,7 +53,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/page/listing", name="listing")
-     * @Template
+     * @Template("@App/default/listing.html.twig")
      */
     public function listingAction()
     {
@@ -86,7 +86,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/page/gallerie", name="gallery")
-     * @Template
+     * @Template("@App/default/gallery.html.twig")
      */
     public function galleryAction(Request $request)
     {
@@ -234,7 +234,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Template
+     * @Template("@App/default/pages.html.twig")
      */
     public function pagesAction()
     {
