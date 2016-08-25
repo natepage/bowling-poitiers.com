@@ -117,8 +117,14 @@ class CompetitionListener implements EventSubscriberInterface
         $message = $event->getMessage();
         $author = $message->getAuthor();
         $competition = $message->getCompetition();
+        $followers = $competition->getFollowers();
+        $competitionAuthor = $competition->getAuthor();
 
-        foreach($competition->getFollowers() as $follower){
+        if($competitionAuthor->getEmailOnCompetitionMessage()){
+            $followers->add($competitionAuthor);
+        }
+
+        foreach($followers as $follower){
             if($author->getId() !== $follower->getId()){
                 $subject = sprintf('[BCP][Compétitions][Messages] Un nouveau message sur la compétition "%s"', $competition->getTitle());
                 $body = $this->templating->render('@App/competition/emails/message_created.html.twig', array(
