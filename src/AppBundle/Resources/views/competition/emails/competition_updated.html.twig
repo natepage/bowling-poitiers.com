@@ -1,0 +1,13 @@
+{% extends '@App/utils/email_structure.html.twig' %}
+
+{% block email_body %}
+    <p>La compétition "<b>{{ competition.title }}</b>" vient juste d'être modifiée !</p>
+
+    {{ include('@App/competition/infos_table.html.twig', {'inEmail': true}) }}
+
+    <p>Vous pouvez y accéder en cliquant sur ce <a href="{{ url('competitions_view', {
+            'slug': competition.slug,
+            'id': competition.id
+        }) }}">lien.</a>
+    </p>
+{% endblock email_body %}

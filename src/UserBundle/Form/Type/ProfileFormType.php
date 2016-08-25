@@ -21,6 +21,14 @@ class ProfileFormType extends AbstractType
                 'required' => false,
                 'label' => 'J\'accepte de recevoir des mails de la part de l\'équipe du BCP pour m\'informer des nouveautés.'
             ))
+            ->add('emailOnCompetitionCreated', CheckboxType::class, array(
+                'required' => false,
+                'label' => 'Recevoir un email quand une compétition est créée'
+            ))
+            ->add('emailOnCompetitionMessage', CheckboxType::class, array(
+                'required' => false,
+                'label' => 'Recevoir un email quand un message est ajouté aux compétitions propriétaires'
+            ))
         ;
     }
 

@@ -23,11 +23,13 @@
     {% else %}
         {% set link = feed %}
     {% endif %}
+    {% set isAuthor = competition.author.id == app.user.id %}
 {% else %}
     {% set link = path('fos_user_security_login') %}
+    {% set isAuthor = false %}
 {% endif %}
 
-{% if competition.author.id != app.user.id %}
+{% if not isAuthor %}
     <a href="{{ link }}" class="btn btn-{{ class }}">
         <i class="fa fa-rss"></i><span class="hidden-xs">{{ text }}</span>
     </a>

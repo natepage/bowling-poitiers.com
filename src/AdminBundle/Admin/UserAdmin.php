@@ -76,6 +76,8 @@ class UserAdmin extends AbstractAdmin
             $formMapper
                 ->with('tab_status')
                     ->add('newsletter', 'checkbox', array('required' => false))
+                    ->add('emailOnCompetitionCreated', 'checkbox', array('required' => false))
+                    ->add('emailOnCompetitionMessage', 'checkbox', array('required' => false))
                 ->end()
             ;
         }
@@ -140,6 +142,8 @@ class UserAdmin extends AbstractAdmin
             ->with('tab_competitions', array(
                 'class' => 'col-md-12'
             ))
+                ->add('emailOnCompetitionCreated')
+                ->add('emailOnCompetitionMessage')
                 ->add('competitions')
                 ->add('competitionsFollowed')
             ->end()

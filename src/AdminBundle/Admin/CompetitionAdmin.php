@@ -2,7 +2,9 @@
 
 namespace AdminBundle\Admin;
 
+use AppBundle\AppEvents;
 use AppBundle\Entity\Competition;
+use AppBundle\Event\CompetitionEvent;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -108,6 +110,14 @@ class CompetitionAdmin extends AbstractAdmin
     public function preUpdate($competition)
     {
         $this->setSlug($competition);
+    }
+
+    public function postRemove($competition)
+    {
+        $eventDispatcher = $this->getConfigurationPool()->getContainer()->get('event_dispatcher');
+        $event = new CompetitionEvent($competition);
+
+        $eventDispatcher->dispatch(AppEvents::COMPETITION_REMOVE_EVENT, $event);
     }
 
     private function setSlug(Competition $competition)

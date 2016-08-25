@@ -94,6 +94,22 @@
                 <source>form.label_newsletter</source>
                 <target>Inscrit à la newsletter</target>
             </trans-unit>
+            <trans-unit id="form.label_email_on_competition_created">
+                <source>form.label_email_on_competition_created</source>
+                <target>Recevoir un email quand une compétition est créée</target>
+            </trans-unit>
+            <trans-unit id="form.label_email_on_competition_message">
+                <source>form.label_email_on_competition_message</source>
+                <target>Recevoir un email quand un message est ajouté aux compétitions propriétaires</target>
+            </trans-unit>
+            <trans-unit id="show.label_email_on_competition_created">
+                <source>show.label_email_on_competition_created</source>
+                <target>Recevoir un email quand une compétition est créée</target>
+            </trans-unit>
+            <trans-unit id="show.label_email_on_competition_message">
+                <source>show.label_email_on_competition_message</source>
+                <target>Recevoir un email quand un message est ajouté aux compétitions propriétaires</target>
+            </trans-unit>
             <trans-unit id="tab_roles">
                 <source>tab_roles</source>
                 <target>Roles</target>

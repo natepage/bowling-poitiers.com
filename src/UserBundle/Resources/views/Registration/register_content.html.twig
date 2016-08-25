@@ -10,6 +10,8 @@
     {{ form_row(form.plainPassword.first) }}
     {{ form_row(form.plainPassword.second) }}
     {{ form_row(form.newsletter, {'attr': {'style': 'display: block;'}}) }}
+    {{ form_row(form.emailOnCompetitionCreated, {'attr': {'style': 'display: block;'}}) }}
+    {{ form_row(form.emailOnCompetitionMessage, {'attr': {'style': 'display: block;'}}) }}
     {{ form_rest(form) }}
 
     <hr>

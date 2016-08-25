@@ -1,4 +1,6 @@
-<table class="table">
+{% set emailRender = inEmail is defined ? true : false %}
+
+<table class="table"{% if emailRender %} style="width: 100%; color: #333; border: 1px solid #333; margin: 10px;"{% endif %}>
     <tr>
         <th>Bowling</th>
         <th>Partenaires recherchés</th>
@@ -6,9 +8,9 @@
         <th>Fini le</th>
     </tr>
     <tr>
-        <td>{{ competition.bowling }}</td>
-        <td>{{ competition.partners }}</td>
-        <td>{{ competition.start|date('d/m/Y à H:i') }}</td>
-        <td>{{ competition.end|date('d/m/Y à H:i') }}</td>
+        <td{% if emailRender %} align="center"{% endif %}>{{ competition.bowling }}</td>
+        <td{% if emailRender %} align="center"{% endif %}>{{ competition.partners }}</td>
+        <td{% if emailRender %} align="center"{% endif %}>{{ competition.start|date('d/m/Y à H:i') }}</td>
+        <td{% if emailRender %} align="center"{% endif %}>{{ competition.end|date('d/m/Y à H:i') }}</td>
     </tr>
 </table>

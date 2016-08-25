@@ -1,0 +1,13 @@
+{% extends '@App/utils/email_structure.html.twig' %}
+
+{% block email_body %}
+    <p>Votre compétition "<b>{{ competition.title }}</b>" vient d'être supprimée !</p>
+
+    {{ include('@App/competition/infos_table.html.twig', {'inEmail': true}) }}
+
+    <p>
+        Si vous n'êtes pas à l'origine de cette action, vous pouvez nous contacter et nous
+        ferons notre possible pour vous aider.
+        <a href="{{ url('report_feedback') }}">Déposer une remarque</a>.
+    </p>
+{% endblock email_body %}

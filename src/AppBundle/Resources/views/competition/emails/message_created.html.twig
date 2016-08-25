@@ -1,0 +1,19 @@
+{% extends '@App/utils/email_structure.html.twig' %}
+
+{% block email_body %}
+    <p>Un nouveau message sur la compétition "{{ competition.title }}" !</p>
+
+    {{ include('@App/competition/infos_table.html.twig', {'inEmail': true}) }}
+
+    <table style="background-color: #FFFFFF; width: 100%; margin: 10px;">
+        <tr><td><b>Auteur :</b></td><td>{{ message.author.username }}</td></tr>
+        <tr><td><b>Envoyé le :</b></td><td>{{ message.created|date('d/m/Y, H:i') }}</td></tr>
+        <tr><td><b>Contenu :</b></td><td>{{ message.content|raw }}</td></tr>
+    </table>
+
+    <p>Vous pouvez y accéder en cliquant sur ce <a href="{{ url('competitions_messages_view', {
+            'slug': competition.slug,
+            'id': competition.id
+        }) }}">lien.</a>
+    </p>
+{% endblock email_body %}

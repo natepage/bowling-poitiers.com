@@ -99,6 +99,20 @@ class User extends ModelUser
      */
     protected $competitionsFollowed;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="email_on_competition_created", type="boolean", nullable=true)
+     */
+    protected $emailOnCompetitionCreated;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="email_on_competition_message", type="boolean", nullable=true)
+     */
+    protected $emailOnCompetitionMessage;
+
     public function __construct()
     {
         parent::__construct();
@@ -109,6 +123,8 @@ class User extends ModelUser
         $this->newsletter = true;
         $this->competitions = new ArrayCollection();
         $this->competitionMessages = new ArrayCollection();
+        $this->emailOnCompetitionCreated = false;
+        $this->emailOnCompetitionMessage = true;
     }
 
     /**
@@ -399,5 +415,53 @@ class User extends ModelUser
     public function getCompetitionsFollowed()
     {
         return $this->competitionsFollowed;
+    }
+
+    /**
+     * Set emailOnCompetitionCreated
+     *
+     * @param boolean $emailOnCompetitionCreated
+     *
+     * @return User
+     */
+    public function setEmailOnCompetitionCreated($emailOnCompetitionCreated)
+    {
+        $this->emailOnCompetitionCreated = $emailOnCompetitionCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get emailOnCompetitionCreated
+     *
+     * @return boolean
+     */
+    public function getEmailOnCompetitionCreated()
+    {
+        return $this->emailOnCompetitionCreated;
+    }
+
+    /**
+     * Set emailOnCompetitionMessage
+     *
+     * @param boolean $emailOnCompetitionMessage
+     *
+     * @return User
+     */
+    public function setEmailOnCompetitionMessage($emailOnCompetitionMessage)
+    {
+        $this->emailOnCompetitionMessage = $emailOnCompetitionMessage;
+
+        return $this;
+    }
+
+    /**
+     * Get emailOnCompetitionMessage
+     *
+     * @return boolean
+     */
+    public function getEmailOnCompetitionMessage()
+    {
+        return $this->emailOnCompetitionMessage;
     }
 }

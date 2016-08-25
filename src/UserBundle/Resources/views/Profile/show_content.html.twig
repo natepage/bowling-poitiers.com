@@ -9,6 +9,16 @@
             <i class="fa fa-check"></i> J'accepte de recevoir des mails de la part de l'équipe du BCP pour m'informer des nouveautés.
         </p>
     {% endif %}
+    {% if user.emailOnCompetitionCreated %}
+        <p>
+            <i class="fa fa-check"></i> Recevoir un email quand une compétition est créée
+        </p>
+    {% endif %}
+    {% if user.emailOnCompetitionMessage %}
+        <p>
+            <i class="fa fa-check"></i> Recevoir un email quand un message est ajouté aux compétitions propriétaires
+        </p>
+    {% endif %}
 
     <hr>
 
