@@ -198,3 +198,10 @@
     color: #FFFFFF;
     border-color: #FFFFFF;
 }
+
+/* Feedback link */
+.report-feedback-link {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}

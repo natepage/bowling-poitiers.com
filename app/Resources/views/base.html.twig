@@ -41,6 +41,15 @@
             {{ include('footer.html.twig') }}
         </div>
 
+        <a href="{{ path('report_feedback') }}" class="btn btn-info btn-fill report-feedback-link">
+            <div class="hidden-xs">
+                <i class="fa fa-question-circle"></i> Une remarque ou réclamation ?
+            </div>
+            <div class="visible-xs">
+                <i class="fa fa-2x fa-question-circle"></i>
+            </div>
+        </a>
+
         {% block javascripts %}
             <script src="https://use.fontawesome.com/2e67942402.js"></script>
             <script src="{{ asset('bundles/app/js/jquery-1.10.2.js') }}"></script>
