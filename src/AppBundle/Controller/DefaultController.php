@@ -221,7 +221,7 @@ class DefaultController extends Controller
 
             $email = $form->get('email')->getData();
             $content = $form->get('content')->getData();
-            $body = sprintf('<p><b>%s</b></p>%s', $email, $content);
+            $body = sprintf('<p>[Email de réponse]</p><p><b>%s</b></p><p>[Contenu]</p>%s', $email, $content);
 
             $mailer->send($from, array($to), $subject, $body);
 
