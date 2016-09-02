@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% set alreadyUsed = app.request.cookies.get('already_used_competitions') %}
 
 {% block body %}
     <div class="container body-ctn">
@@ -16,4 +17,20 @@
             {% block content %}{% endblock content %}
         </div>
     </div>
+    {% if not alreadyUsed %}
+        {{ include('@App/competition/first_use_modal.html.twig') }}
+    {% endif %}
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if not alreadyUsed %}
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#first-use-competitions').modal({
+                    backdrop: 'static'
+                });
+            });
+        </script>
+    {% endif %}
+{% endblock javascripts %}

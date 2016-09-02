@@ -14,6 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -533,6 +535,20 @@ class CompetitionController extends Controller
             'page' => $page,
             'messagesPage' => $messagesPage
         );
+    }
+
+    /**
+     * @Route("/first/use", name="competitions_first_use")
+     * @Method("GET")
+     */
+    public function firstUseAction()
+    {
+        $cookie = new Cookie('already_used_competitions', 'true', time() + (10 * 365 * 24 * 60 * 60));
+        $response = new RedirectResponse($this->generateUrl('competitions_index'));
+
+        $response->headers->setCookie($cookie);
+
+        return $response;
     }
 
     /**
