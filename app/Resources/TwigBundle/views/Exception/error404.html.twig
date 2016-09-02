@@ -6,11 +6,12 @@
     <div class="container">
         <div class="jumbotron" style="padding-left: 30px; padding-right: 30px;">
             <h1>Le contenu auquel vous essayez d'accéder n'existe pas ou plus...</h1>
-            <p>
-                Nous vous prions de bien vouloir nous excuser pour la gêne occasionnée, nous vous
-                conseillons de vérifier si l'adresse dans votre barre de recherche ne contient aucune erreur
-                ou encore de <a href="{{ path('homepage') }}">retourner sur la page d'accueil</a>.
-            </p>
+            <p>Nous vous prions de bien vouloir nous excuser pour la gêne occasionnée, nous vous conseillons de :</p>
+            <ul>
+                <li>vérifier si l'adresse dans votre barre de recherche ne contient aucune erreur</li>
+                <li><a href="{{ path('homepage') }}">retourner sur la page d'accueil</a></li>
+                <li>ou nous faire part de votre problème en nous <a href="{{ path('report_feedback') }}">envoyant un message</a></li>
+            </ul>
         </div>
     </div>
 {% endblock body %}

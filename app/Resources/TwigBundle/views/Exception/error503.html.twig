@@ -5,11 +5,13 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron" style="margin-top: 100px;">
-            <h1>En construction</h1>
-            <p>
-                Ce site est actuellement en construction, l'équipe du Bowling Club Poitevin de Poitiers vous donne
-                rendez-vous prochainement.
-            </p>
+            <h1>Le contenu auquel vous essayez d'accéder n'existe pas ou plus...</h1>
+            <p>Nous vous prions de bien vouloir nous excuser pour la gêne occasionnée, nous vous conseillons de :</p>
+            <ul>
+                <li>vérifier si l'adresse dans votre barre de recherche ne contient aucune erreur</li>
+                <li><a href="{{ path('homepage') }}">retourner sur la page d'accueil</a></li>
+                <li>ou nous faire part de votre problème en nous <a href="{{ path('report_feedback') }}">envoyant un message</a></li>
+            </ul>
         </div>
     </div>
 {% endblock body %}
