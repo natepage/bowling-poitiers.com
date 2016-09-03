@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/competitions")
+ * @Route("/recherche_partenaires")
  */
 class CompetitionController extends Controller
 {
