@@ -14,6 +14,28 @@ use UserBundle\Security\Core\Authentication\Token\OAuthToken;
 
 class ConnectController extends BaseConnectController
 {
+    public function connectAction(Request $request)
+    {
+        $connect = $this->getParameter('hwi_oauth.connect');
+        $hasUser = $this->isGranted('IS_AUTHENTICATED_REMEMBERED');
+
+        $error = $this->getErrorForRequest($request);
+
+        // if connecting is enabled and there is no user, redirect to the registration form
+        if ($connect
+            && !$hasUser
+            && $error instanceof AccountNotLinkedException
+        ) {
+            $key = time();
+            $session = $request->getSession();
+            $session->set('_hwi_oauth.registration_error.'.$key, $error);
+
+            return $this->redirectToRoute('hwi_oauth_connect_registration', array('key' => $key));
+        }
+
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
+    }
+
     public function registrationAction(Request $request, $key)
     {
         $connect = $this->getParameter('hwi_oauth.connect');

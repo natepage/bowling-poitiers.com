@@ -67,7 +67,7 @@ class CompetitionListener implements EventSubscriberInterface
         $currentUser = $this->tokenStorage->getToken()->getUser();
         $users = $this->em->getRepository('UserBundle:User')->findUserWhenCompetitionCreated($currentUser->getId());
 
-        $subject = '[BCP][Compétitions] Une nouvelle compétition a été ajoutée sur le site !';
+        $subject = '[BCP][Recherche Partenaires] Une nouvelle compétition a été ajoutée sur le site !';
         $body = $this->templating->render('@App/competition/emails/competition_created.html.twig', array(
             'competition' => $competition
         ));
@@ -83,7 +83,7 @@ class CompetitionListener implements EventSubscriberInterface
     {
         $competition = $event->getCompetition();
 
-        $subject = sprintf('[BCP][Compétitions] La compétition "%s" a été modifiée !', $competition->getTitle());
+        $subject = sprintf('[BCP][Recherche Partenaires] La compétition "%s" a été modifiée !', $competition->getTitle());
         $body = $this->templating->render('@App/competition/emails/competition_updated.html.twig', array(
             'competition' => $competition
         ));
@@ -102,7 +102,7 @@ class CompetitionListener implements EventSubscriberInterface
         $currentUser = $this->tokenStorage->getToken()->getUser();
 
         if($author->getId() !== $currentUser->getId()){
-            $subject = sprintf('[BCP][Compétitions] Votre compétition "%s" a été supprimée !', $competition->getTitle());
+            $subject = sprintf('[BCP][Recherche Partenaires] Votre compétition "%s" a été supprimée !', $competition->getTitle());
             $body = $this->templating->render('@App/competition/emails/competition_removed.html.twig', array(
                 'competition' => $competition
             ));
@@ -126,7 +126,7 @@ class CompetitionListener implements EventSubscriberInterface
 
         foreach($followers as $follower){
             if($author->getId() !== $follower->getId()){
-                $subject = sprintf('[BCP][Compétitions][Messages] Un nouveau message sur la compétition "%s"', $competition->getTitle());
+                $subject = sprintf('[BCP][Recherche Partenaires][Messages] Un nouveau message sur la compétition "%s"', $competition->getTitle());
                 $body = $this->templating->render('@App/competition/emails/message_created.html.twig', array(
                     'competition' => $competition,
                     'message' => $message
