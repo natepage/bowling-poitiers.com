@@ -16,6 +16,15 @@
             </small>
         </h1>
         <div class="content-ctn">{{ post.content|raw }}</div>
+        <hr>
+        <div class="pdf-ctn">
+            {% for pdf in post.pdfs %}
+                <a href="{{ asset(pdf.webPath) }}" class="link-pdf btn btn-danger" target="_blank">
+                    <i class="fa fa-3x fa-file-pdf-o"></i><br>{{ pdf.alt }}
+                </a>
+            {% endfor %}
+        </div>
+        <hr>
         <div class="images-ctn">
             {% for image in post.images %}
                 <a href="{{ image.webPath|imagine_filter('post_view') }}"
