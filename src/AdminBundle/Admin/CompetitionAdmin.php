@@ -105,11 +105,28 @@ class CompetitionAdmin extends AbstractAdmin
     public function preValidate($competition)
     {
         $this->setSlug($competition);
+        $competition->setSystemIsOwner(true);
     }
 
     public function preUpdate($competition)
     {
         $this->setSlug($competition);
+    }
+
+    public function postPersist($competition)
+    {
+        $eventDispatcher = $this->getConfigurationPool()->getContainer()->get('event_dispatcher');
+        $event = new CompetitionEvent($competition);
+
+        $eventDispatcher->dispatch(AppEvents::COMPETITION_CREATE_EVENT, $event);
+    }
+
+    public function postUpdate($competition)
+    {
+        $eventDispatcher = $this->getConfigurationPool()->getContainer()->get('event_dispatcher');
+        $event = new CompetitionEvent($competition);
+
+        $eventDispatcher->dispatch(AppEvents::COMPETITION_UPDATE_EVENT, $event);
     }
 
     public function postRemove($competition)

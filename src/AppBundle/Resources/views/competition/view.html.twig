@@ -26,7 +26,12 @@
         <h1 class="title text-center">
             {{ competition.title }}
             <small class="subtitle">
-                écrit par {{ competition.author.username }}, le {{ competition.created|date('d/m/Y') }}
+                écrit par
+                {% if not competition.systemIsOwner %}
+                    {{ competition.author.username }}
+                {% else %}
+                    Bowling Club Poitevin
+                {% endif %}, le {{ competition.created|date('d/m/Y') }}
             </small>
         </h1>
         <div class="content-ctn">

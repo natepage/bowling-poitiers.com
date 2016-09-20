@@ -58,6 +58,10 @@
                 <source>list.label_created</source>
                 <target>Créé le</target>
             </trans-unit>
+            <trans-unit id="list.label_bowling">
+                <source>list.label_bowling</source>
+                <target>Bowling</target>
+            </trans-unit>
             <trans-unit id="list.label_title">
                 <source>list.label_title</source>
                 <target>Titre</target>

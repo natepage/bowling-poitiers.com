@@ -15,7 +15,7 @@
 {% set text = 'S\'abonner à la compétition' %}
 {% set class = 'success' %}
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     {% if competition.followers.contains(app.user) %}
         {% set link = unfeed %}
         {% set text = 'Se désabonner de la compétition' %}

@@ -1,4 +1,4 @@
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     {% if competition.author.id == app.user.id %}
         <a href="{{ path('competitions_remove', {
             'display': display,

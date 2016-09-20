@@ -117,10 +117,18 @@ class Competition
      */
     private $followers;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="system_is_owner", type="boolean", nullable=true)
+     */
+    private $systemIsOwner;
+
     public function __construct()
     {
         $this->created = new \DateTime();
         $this->messages = new ArrayCollection();
+        $this->systemIsOwner = false;
     }
 
     public function __toString()
@@ -436,6 +444,30 @@ class Competition
         return $this->followers;
     }
 
+    /**
+     * Set systemIsOwner
+     *
+     * @param $systemIsOwner
+     *
+     * @return Competition
+     */
+    public function setSystemIsOwner($systemIsOwner)
+    {
+        $this->systemIsOwner = $systemIsOwner;
+
+        return $this;
+    }
+
+    /**
+     * Get systemIsOwner
+     *
+     * @return bool
+     */
+    public function getSystemIsOwner()
+    {
+        return $this->systemIsOwner;
+    }
+
     public function toArray()
     {
         return array(
@@ -444,6 +476,7 @@ class Competition
             'slug' => $this->slug,
             'bowling' => $this->bowling,
             'author' => $this->author->getUsername(),
+            'system_is_owner' => $this->systemIsOwner,
             'start' => (string) $this->start->getTimestamp() . '000',
             'end' => (string) $this->end->getTimestamp() . '000'
         );

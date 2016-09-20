@@ -120,7 +120,7 @@ class CompetitionListener implements EventSubscriberInterface
         $followers = $competition->getFollowers();
         $competitionAuthor = $competition->getAuthor();
 
-        if($competitionAuthor->getEmailOnCompetitionMessage()){
+        if(!$competition->getSystemIsOwner() && $competitionAuthor->getEmailOnCompetitionMessage()){
             $followers->add($competitionAuthor);
         }
 
