@@ -114,14 +114,20 @@
     text-transform: uppercase;
 }
 
-.post-categories-ctn .badge-category:hover {
-    background-color: #FFFFFF;
-    color: rgba(255, 76, 64, 0.98);
+/* Category */
+.category-title {
+    margin: 0 0 10px 0;
 }
 
 /* Competition list */
 .text-ctn {
-    padding: 5px 10px;
+    padding: 5px 5px 5px 45px;
+}
+
+@media (max-width: 992px) {
+    .text-ctn {
+        padding: 5px;
+    }
 }
 
 /* Competition create */

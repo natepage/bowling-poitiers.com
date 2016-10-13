@@ -3,7 +3,10 @@
 {% block body %}
     <div class="container body-ctn">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-3">
+                {{ render(controller('AppBundle:Default:categories')) }}
+            </div>
+            <div class="col-md-6">
                 {% for post in posts %}
                     {{ include('@App/default/post/preview.html.twig') }}
                 {% else %}
@@ -14,7 +17,7 @@
 
                 {{ include('@App/default/post/pagination.html.twig') }}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{ render(controller('AppBundle:Default:pages')) }}
                 {{ include('@App/default/archives.html.twig') }}
                 {% include 'google_pub_adsense_large.html.twig' %}

@@ -1,0 +1,9 @@
+<div class="list-group">
+    <span class="list-group-item title-like">Catégories</span>
+    {% for category in categories %}
+        <a href="{{ path('category', {'slug': category.slug}) }}" class="list-group-item">
+            <span class="badge">{{ category.posts.count }}</span>
+            {{ category.title }}
+        </a>
+    {% endfor %}
+</div>

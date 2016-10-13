@@ -244,6 +244,16 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Template("@App/default/categories.html.twig")
+     */
+    public function categoriesAction()
+    {
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findAll();
+
+        return array('categories' => $categories);
+    }
+
+    /**
      * Provide a dynamic array for array_multisort
      *
      * @param $array

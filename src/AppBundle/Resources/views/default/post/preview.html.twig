@@ -13,9 +13,7 @@
             <span class="text-muted">{{ post.description }}</span>
             <div class="post-categories-ctn">
                 {% for category in post.categories %}
-                    <a href="{{ path('category', {'slug': category.slug}) }}" class="badge badge-category">
-                        {{ category.title }}
-                    </a>
+                    <span class="badge badge-category">{{ category.title }}</span>
                 {% endfor %}
             </div>
         </div>
