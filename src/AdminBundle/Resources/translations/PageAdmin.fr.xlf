@@ -72,11 +72,15 @@
             </trans-unit>
             <trans-unit id="tab_page">
                 <source>tab_page</source>
-                <target>Article</target>
+                <target>Page</target>
             </trans-unit>
             <trans-unit id="tab_publish">
                 <source>tab_publish</source>
                 <target>Publication</target>
+            </trans-unit>
+            <trans-unit id="tab_pdfs">
+                <source>tab_pdfs</source>
+                <target>Pdfs</target>
             </trans-unit>
             <trans-unit id="form.label_published">
                 <source>form.label_published</source>

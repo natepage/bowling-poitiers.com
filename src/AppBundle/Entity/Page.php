@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -100,6 +102,14 @@ class Page
     private $priority;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Pdf", mappedBy="page", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $pdfs;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -108,6 +118,7 @@ class Page
         $this->published = false;
         $this->views = 0;
         $this->priority = 0;
+        $this->pdfs = new ArrayCollection();
     }
 
     /**
@@ -400,5 +411,62 @@ class Page
 
     public function isOwn($id){
         return $this->author !== null && $this->author->getId() === $id;
+    }
+
+    /**
+     * Add pdfs
+     *
+     * @param \AppBundle\Entity\Pdf pdfs
+     * @return Page
+     */
+    public function addPdfs(\AppBundle\Entity\Pdf $pdfs)
+    {
+        if(null !== $pdfs){
+            $this->pdfs[] = $pdfs;
+            $pdfs->setPage($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove pdfs
+     *
+     * @param \AppBundle\Entity\Pdf $pdfs
+     */
+    public function removePdfs(\AppBundle\Entity\Pdf $pdfs)
+    {
+        $this->pdfs->removeElement($pdfs);
+    }
+
+    /**
+     * Set pdfs
+     *
+     * @param Collection $pdfs
+     * @return Page
+     */
+    public function setPdfs(Collection $pdfs)
+    {
+        foreach($pdfs as $pdf){
+            if(null !== $pdf){
+                $pdf->setPage($this);
+            } else {
+                $pdfs->removeElement($pdf);
+            }
+        }
+
+        $this->pdfs = $pdfs;
+
+        return $this;
+    }
+
+    /**
+     * Get pdfs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPdfs()
+    {
+        return $this->pdfs;
     }
 }

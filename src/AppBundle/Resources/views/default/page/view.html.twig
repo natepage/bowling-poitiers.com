@@ -9,6 +9,14 @@
         </h1>
         <div class="content-ctn">{{ page.content|raw }}</div>
     </div>
+    {% if page.pdfs|length > 0 %}<hr>{% endif %}
+    <div class="pdf-ctn">
+        {% for pdf in page.pdfs %}
+            <a href="{{ asset(pdf.webPath) }}" class="link-pdf btn btn-danger" target="_blank">
+                <i class="fa fa-3x fa-file-pdf-o"></i><br>{{ pdf.alt }}
+            </a>
+        {% endfor %}
+    </div>
 {% endblock content %}
 
 {% block footer %}

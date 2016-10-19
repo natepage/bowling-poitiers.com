@@ -10,4 +10,9 @@ class PageController extends CRUDController
     {
         $page->setAuthor($this->getUser());
     }
+
+    public function preEdit(Request $request, $page)
+    {
+        $this->admin->handleOldElements($page, array('pdfs'));
+    }
 }

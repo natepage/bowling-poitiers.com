@@ -16,7 +16,7 @@
             </small>
         </h1>
         <div class="content-ctn">{{ post.content|raw }}</div>
-        <hr>
+        {% if post.pdfs|length > 0 %}<hr>{% endif %}
         <div class="pdf-ctn">
             {% for pdf in post.pdfs %}
                 <a href="{{ asset(pdf.webPath) }}" class="link-pdf btn btn-danger" target="_blank">
@@ -24,7 +24,7 @@
                 </a>
             {% endfor %}
         </div>
-        <hr>
+        {% if post.images|length > 0 %}<hr>{% endif %}
         <div class="images-ctn">
             {% for image in post.images %}
                 <a href="{{ image.webPath|imagine_filter('post_view') }}"

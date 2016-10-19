@@ -49,7 +49,7 @@ class CompetitionAdmin extends AbstractAdmin
                 'attr' => array(
                     'class' => 'ckeditor'
                 ),
-                'required' => true
+                'required' => false
             ))
         ;
     }

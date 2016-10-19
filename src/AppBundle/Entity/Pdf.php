@@ -35,6 +35,11 @@ class Pdf
     private $post;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Page", inversedBy="pdfs")
+     */
+    private $page;
+
+    /**
      * @Assert\File(maxSize="500k")
      */
     private $file;
@@ -142,7 +147,7 @@ class Pdf
 
     /**
      * @param string $url
-     * @return Image
+     * @return Pdf
      */
     public function setUrl($url)
     {
@@ -160,7 +165,7 @@ class Pdf
 
     /**
      * @param string $alt
-     * @return Image
+     * @return Pdf
      */
     public function setAlt($alt)
     {
@@ -200,7 +205,7 @@ class Pdf
      * Set post
      *
      * @param \AppBundle\Entity\Post $post
-     * @return Image
+     * @return Pdf
      */
     public function setPost(\AppBundle\Entity\Post $post = null)
     {
@@ -217,5 +222,28 @@ class Pdf
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * Set page
+     *
+     * @param \AppBundle\Entity\Page $page
+     * @return Pdf
+     */
+    public function setPage(\AppBundle\Entity\Page $page = null)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
+     * Get page
+     *
+     * @return \AppBundle\Entity\Page
+     */
+    public function getPage()
+    {
+        return $this->page;
     }
 }

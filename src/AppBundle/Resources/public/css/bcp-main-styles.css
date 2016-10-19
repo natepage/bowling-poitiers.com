@@ -82,6 +82,9 @@
     margin-bottom: 10px;
     background-color: #FFFFFF;
     border-radius: 6px;
+    -webkit-box-shadow: rgba(8, 8, 8, .2) 0 2px 1px 0px;
+    -moz-box-shadow: rgba(8, 8, 8, .2) 0 2px 1px 0px;
+    box-shadow: rgba(8, 8, 8, .2) 0 2px 1px 0px;
 }
 
 .post-link, .competition-link {

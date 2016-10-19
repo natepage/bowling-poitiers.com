@@ -89,8 +89,7 @@ class Competition
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
-     * @Assert\NotBlank(message="Merci de bien vouloir donner une description à votre compétition")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -129,6 +128,7 @@ class Competition
         $this->created = new \DateTime();
         $this->messages = new ArrayCollection();
         $this->systemIsOwner = false;
+        $this->partners = 1;
     }
 
     public function __toString()

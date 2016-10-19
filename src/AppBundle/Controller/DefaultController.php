@@ -205,7 +205,7 @@ class DefaultController extends Controller
     {
         $datas = array();
 
-        if($this->isGranted('IS_AUTHENTICATED_FULLY')){
+        if($this->isGranted('IS_AUTHENTICATED_FULLY') || $this->isGranted('IS_AUTHENTICATED_REMEMBERED')){
             $user = $this->getUser();
 
             $datas['email'] = $user->getEmail();

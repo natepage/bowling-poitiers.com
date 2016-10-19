@@ -114,6 +114,22 @@
                 <source>render.competition_admin</source>
                 <target>[Compétition] Suppression et export (+ édition)</target>
             </trans-unit>
+            <trans-unit id="header.category">
+                <source>header.category</source>
+                <target>Catégorie</target>
+            </trans-unit>
+            <trans-unit id="render.category_reader">
+                <source>render.category_reader</source>
+                <target>[Catégorie] Visualisation</target>
+            </trans-unit>
+            <trans-unit id="render.category_editor">
+                <source>render.category_editor</source>
+                <target>[Catégorie] Création et modification (+ visualisation)</target>
+            </trans-unit>
+            <trans-unit id="render.category_admin">
+                <source>render.category_admin</source>
+                <target>[Catégorie] Suppression et export (+ édition)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
