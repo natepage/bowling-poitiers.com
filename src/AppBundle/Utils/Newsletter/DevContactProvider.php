@@ -16,10 +16,21 @@ class DevContactProvider implements ContactProviderInterface
      */
     private $id;
 
+    /**
+     * @var boolean
+     */
+    private $isSuperAdmin;
+
     public function __construct(ObjectManager $om, $id)
     {
         $this->om = $om;
         $this->id = $id;
+        $this->isSuperAdmin = false;
+    }
+
+    public function setIsSuperAdmin($isSuperAdmin)
+    {
+        $this->isSuperAdmin = $isSuperAdmin;
     }
 
     public function getContacts()

@@ -29,7 +29,7 @@ class ContactProvider implements ContactProviderInterface
 
     public function getContacts()
     {
-        if($this->isSuperAdmin){
+        /*if($this->isSuperAdmin){
             $user = $this->om->getRepository('UserBundle:User')->find(1);
 
             $contact = new Contact();
@@ -37,7 +37,7 @@ class ContactProvider implements ContactProviderInterface
                     ->setEmail($user->getEmail());
 
             return array($contact);
-        }
+        }*/
 
         $contacts = array();
         $emails = array();

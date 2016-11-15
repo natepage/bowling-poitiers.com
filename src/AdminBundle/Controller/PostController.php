@@ -75,7 +75,7 @@ class PostController extends CRUDController
 
     public function batchActionNewsletter(ProxyQueryInterface $query)
     {
-        if(!$this->admin->isGranted('ROLE_POST_ADMIN')){
+        if(!$this->isGranted('ROLE_POST_ADMIN')){
             throw $this->createAccessDeniedException();
         }
 

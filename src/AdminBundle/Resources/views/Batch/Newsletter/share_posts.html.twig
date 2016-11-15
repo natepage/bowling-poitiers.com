@@ -1,4 +1,5 @@
-{% extends '@App/Utils/email_structure.html.twig' %}
+{% extends '@App/utils/email_structure.html.twig' %}
+
 {% set color = '#555' %}
 
 {% block email_body %}
@@ -7,7 +8,7 @@
         <p style="color: {{ color }};">L'équipe du BCP Poitevin a le plaisir de vous annoncer qu'il y a des nouveautés sur son site.</p>
         <ul>
             {% for post in posts %}
-                <li><a href="{{ url(path('post_view', {'slug': post.slug})) }}" style="color: {{ color }};">{{ post.title }}</a></li>
+                <li><a href="{{ url('post_view', {'slug': post.slug}) }}" style="color: {{ color }};">{{ post.title }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -17,7 +18,7 @@
             <p  style="color: {{ color }};">
                 Si toute fois vous ne désirez plus recevoir les nouveautés du Bowling Club Poitevin,
                 vous pouvez vous désabonner en cliquant sur le lien ci-dessous : <br>
-                <a href="{{ url('front_newsletter_remove', {'token': contact.token}) }}">Se désabonner ? C'est par ici !</a>
+                <a href="{{ url('newsletter_remove', {'token': contact.token}) }}">Se désabonner ? C'est par ici !</a>
             </p>
         </div>
     {% endif %}

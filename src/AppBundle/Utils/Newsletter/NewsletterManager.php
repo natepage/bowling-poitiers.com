@@ -34,6 +34,11 @@ class NewsletterManager implements NewsletterManagerInterface
     private $emailSender;
 
     /**
+     * @var boolean
+     */
+    private $isSuperAdmin;
+
+    /**
      * Constructor
      */
     public function __construct(
@@ -49,10 +54,12 @@ class NewsletterManager implements NewsletterManagerInterface
         $this->from = $from;
         $this->translator = $translator;
         $this->emailSender = $emailSender;
+        $this->isSuperAdmin = false;
     }
 
     public function setIsSuperAdmin($isSuperAdmin)
     {
+        $this->isSuperAdmin = $isSuperAdmin;
         $this->contactProvider->setIsSuperAdmin($isSuperAdmin);
     }
 
@@ -81,7 +88,7 @@ class NewsletterManager implements NewsletterManagerInterface
             ));
             $to = array($contact->getEmail());
 
-            if($this->emailSender->send($from, $to, $subject, $template)){
+            if($this->emailSender->send($from, $to, $subject, $template) && !$this->isSuperAdmin){
                 $post->setSharedNewsletter($now);
             }
         }
@@ -122,12 +129,16 @@ class NewsletterManager implements NewsletterManagerInterface
                 ));
                 $to = (array($contact->getEmail()));
 
-                if($this->emailSender->send($from, $to, $subject, $template)){
-                    foreach($posts as $post){
-                        $post->setSharedNewsletter($now);
-                    }
-
+                try {
+                    $this->emailSender->send($from, $to, $subject, $template);
                     $response['sended'] = true;
+                } catch (\Exception $e) {
+                }
+            }
+
+            if(!$this->isSuperAdmin){
+                foreach($posts as $post){
+                    $post->setSharedNewsletter($now);
                 }
             }
         }
