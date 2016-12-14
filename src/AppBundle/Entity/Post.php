@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Post
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @Serializer\ExclusionPolicy("none")
  */
 class Post
 {
@@ -20,6 +22,7 @@ class Post
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Exclude()
      */
     private $id;
 
@@ -27,6 +30,8 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
+     * @Serializer\Type("DateTime")
+     * @Serializer\Groups({"list", "details"})
      */
     private $created;
 
@@ -34,6 +39,8 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="updated", type="datetime", nullable=true)
+     * @Serializer\Type("DateTime")
+     * @Serializer\Groups({"list", "details"})
      */
     private $updated;
 
@@ -42,6 +49,7 @@ class Post
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Exclude()
      */
     private $author;
 
@@ -49,6 +57,8 @@ class Post
      * @var string
      *
      * @ORM\Column(name="author_name", type="string", length=255)
+     * @Serializer\Type("string")
+     * @Serializer\Groups({"list", "details"})
      */
     private $authorName;
 
@@ -56,6 +66,8 @@ class Post
      * @var boolean
      *
      * @ORM\Column(name="published", type="boolean")
+     * @Serializer\Type("boolean")
+     * @Serializer\Groups({"list", "details"})
      */
     private $published;
 
@@ -63,6 +75,8 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Serializer\Type("string")
+     * @Serializer\Groups({"list", "details"})
      */
     private $title;
 
@@ -70,6 +84,8 @@ class Post
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Serializer\Type("string")
+     * @Serializer\Groups({"list", "details"})
      */
     private $slug;
 
@@ -77,6 +93,8 @@ class Post
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @Serializer\Type("string")
+     * @Serializer\Groups({"list"})
      */
     private $description;
 
@@ -84,6 +102,8 @@ class Post
      * @var string
      *
      * @ORM\Column(name="content", type="text", nullable=true)
+     * @Serializer\Type("string")
+     * @Serializer\Groups({"details"})
      */
     private $content;
 
@@ -92,6 +112,7 @@ class Post
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="post", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Exclude()
      */
     private $images;
 
@@ -99,6 +120,7 @@ class Post
      * @var integer
      *
      * @ORM\Column(name="preview_image_key", type="integer", options={"default": -1})
+     * @Serializer\Exclude()
      */
     private $previewImageKey;
 
@@ -107,6 +129,7 @@ class Post
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Pdf", mappedBy="post", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Exclude()
      */
     private $pdfs;
 
@@ -114,6 +137,7 @@ class Post
      * @var integer
      *
      * @ORM\Column(name="views", type="integer")
+     * @Serializer\Exclude()
      */
     private $views;
 
@@ -121,6 +145,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="shared_newsletter", type="datetime", nullable=true)
+     * @Serializer\Exclude()
      */
     private $sharedNewsletter;
 
@@ -128,6 +153,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="fb_id", type="text", length=255, nullable=true)
+     * @Serializer\Exclude()
      */
     private $fbId;
 
@@ -136,6 +162,7 @@ class Post
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="posts")
      * @ORM\JoinTable(name="posts_categories")
+     * @Serializer\Type("ArrayCollection<AppBundle\Entity\Category>")
      */
     private $categories;
 

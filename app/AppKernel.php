@@ -33,6 +33,9 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
 
+            //JMS
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+
             //My Bundles
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle('FOSUserBundle'),

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -12,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  * @UniqueEntity("title")
+ * @Serializer\ExclusionPolicy("none")
  */
 class Category
 {
@@ -21,6 +23,7 @@ class Category
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Type("integer")
      */
     private $id;
 
@@ -28,6 +31,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Serializer\Type("string")
      */
     private $title;
 
@@ -35,6 +39,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Serializer\Type("string")
      */
     private $slug;
 
@@ -42,6 +47,7 @@ class Category
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="categories")
+     * @Serializer\Exclude()
      */
     private $posts;
 
