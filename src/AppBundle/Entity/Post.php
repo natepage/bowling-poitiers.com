@@ -30,7 +30,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
-     * @Serializer\Type("DateTime")
+     * @Serializer\Type("DateTime<'r'>")
      * @Serializer\Groups({"list", "details"})
      */
     private $created;
@@ -39,7 +39,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="updated", type="datetime", nullable=true)
-     * @Serializer\Type("DateTime")
+     * @Serializer\Type("DateTime<'r'>")
      * @Serializer\Groups({"list", "details"})
      */
     private $updated;
@@ -112,7 +112,8 @@ class Post
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="post", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
-     * @Serializer\Exclude()
+     * @Serializer\Type("ArrayCollection<AppBundle\Entity\Image>")
+     * @Serializer\Groups({"list", "details"})
      */
     private $images;
 
@@ -120,7 +121,8 @@ class Post
      * @var integer
      *
      * @ORM\Column(name="preview_image_key", type="integer", options={"default": -1})
-     * @Serializer\Exclude()
+     * @Serializer\Type("integer")
+     * @Serializer\Groups({"list", "details"})
      */
     private $previewImageKey;
 
