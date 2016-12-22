@@ -74,7 +74,7 @@ class PostController extends CRUDController
         return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
     }
 
-    public function newletterAction()
+    public function newsletterAction()
     {
         $post = $this->admin->getSubject();
 
