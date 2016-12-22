@@ -1,21 +1,38 @@
 {% extends '@App/utils/email_structure.html.twig' %}
 
-{% set color = '#555' %}
-
 {% block email_body %}
-    <div style="width: 50%; margin: auto;">
-        <p style="color: {{ color }};">Bonjour{% if contact.username != '' %} {{ contact.username|capitalize }}{% endif %},</p>
-        <p style="color: {{ color }};">L'équipe du BCP Poitevin a le plaisir de vous annoncer qu'il y a des nouveautés sur son site.</p>
-        <ul>
-            {% for post in posts %}
-                <li><a href="{{ url('post_view', {'slug': post.slug}) }}" style="color: {{ color }};">{{ post.title }}</a></li>
-            {% endfor %}
-        </ul>
+    <h3 style="font-size: 16px; font-weight: 600; line-height: 2; margin-top: 24px; color: rgba(255, 76, 64, 0.98);">
+        Bonjour{% if contact.username != '' %} {{ contact.username|capitalize }}{% endif %},
+    </h3>
+
+    <p style="padding-top: 5px; padding-bottom: 5px;">
+        L'équipe du BCP Poitevin a le plaisir de vous annoncer qu'il y a des nouveautés sur son site.
+    </p>
+
+    <div style="display:block;
+        font-size:2px;
+        line-height:2px;
+        margin: auto;
+        width:40px;
+        background-color:#c2c2c2;">
+        &nbsp;
     </div>
+
+    {% for post in posts %}
+        <p style="padding-top: 5px; padding-bottom: 5px;">
+            <strong>
+                <a href="{{ url('post_view', {'slug': post.slug}) }}" style="text-decoration: underline; color: rgba(255, 76, 64, 0.98);">
+                    {{ post.title }}
+                </a>
+            </strong>
+            <br>
+            {{ post.description }}
+        </p>
+    {% endfor %}
 
     {% if contact.unSubscribable and contact.token != '' %}
         <div style="width: 50%; margin: auto; margin-top: 50px;">
-            <p  style="color: {{ color }};">
+            <p>
                 Si toute fois vous ne désirez plus recevoir les nouveautés du Bowling Club Poitevin,
                 vous pouvez vous désabonner en cliquant sur le lien ci-dessous : <br>
                 <a href="{{ url('newsletter_remove', {'token': contact.token}) }}">Se désabonner ? C'est par ici !</a>
@@ -23,3 +40,22 @@
         </div>
     {% endif %}
 {% endblock email_body %}
+
+{% block email_footer %}
+    {{ parent() }}
+
+    <p style="padding-top: 5px; padding-bottom: 5px; text-align: justify;">
+        Vous recevez cet email car vous êtes abonné(e) à la newsletter du site du Bowling Club Poitevin.
+        Si toute fois vous ne désirez plus recevoir ces nouveautés, vous pouvez
+        {% if contact.unSubscribable and contact.token != '' %}
+            <a href="{{ url('newsletter_remove', {'token': contact.token}) }}" style="text-decoration: none; color: rgba(255, 76, 64, 0.98);">
+                vous désabonnez ici
+            </a>
+        {% else %}
+            <a href="{{ url('fos_user_profile_show') }}" style="text-decoration: none; color: rgba(255, 76, 64, 0.98);">
+                les desactiviter à partir de votre profil
+            </a>
+        {% endif %}
+        .
+    </p>
+{% endblock email_footer %}
