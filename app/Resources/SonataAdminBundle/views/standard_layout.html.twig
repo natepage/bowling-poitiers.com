@@ -345,6 +345,33 @@ file that was distributed with this source code.
         {% endblock %}
     {% endif %}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script type="text/javascript">
+        function askConfirmation(button)
+        {
+            var btn = $(button);
+
+            bootbox.confirm({
+                title: btn.data('title'),
+                message: btn.data('message'),
+                buttons: {
+                    cancel: {
+                        label: 'Annuler'
+                    },
+                    confirm: {
+                        label: btn.data('confirm-label'),
+                        className: btn.data('confirm-class')
+                    }
+                },
+                callback: function(result) {
+                    if(result) {
+                        window.location = btn.data('url');
+                    }
+                }
+            });
+        }
+    </script>
+
     <script type="text/javascript">
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();

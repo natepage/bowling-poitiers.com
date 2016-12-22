@@ -2,27 +2,63 @@
 
 namespace AdminBundle\Controller;
 
+use AdminBundle\Entity\Email;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 
 class EmailController extends CRUDController
 {
+    protected $errors = array();
+
+    public function previewAction()
+    {
+        $email = $this->admin->getSubject();
+
+        if(!$email or !$email instanceof Email){
+            throw $this->createNotFoundException('Unable to find the email object.');
+        }
+
+        return $this->render('@Admin/Batch/Email/send.html.twig', array(
+            'send_subject' => $email->getSubject(),
+            'send_body' => $email->getBody()
+        ));
+    }
+
+    public function sendAction()
+    {
+        $email = $this->admin->getSubject();
+
+        if(!$email or !$email instanceof Email){
+            throw $this->createNotFoundException('Unable to find the email object.');
+        }
+
+        $this->sendEmails(array($email));
+
+        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
     public function batchActionSendEmail(ProxyQueryInterface $query)
     {
         if(!$this->admin->isGranted('ROLE_EMAIL_ADMIN')){
             throw $this->createAccessDeniedException();
         }
 
+        $selectedEmails = $query->execute();
+        $this->sendEmails($selectedEmails);
+
+        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
+    private function sendEmails($emails)
+    {
         $modelManager = $this->admin->getModelManager();
         $emailSender = $this->get('bcp.email_sender');
         $contactProvider = $this->get('bcp.contact_provider');
         $templating = $this->get('templating');
         $from = $this->getParameter('newsletter_from');
-        $selectedEmails = $query->execute();
-        $errors = array();
 
         try {
-            foreach($selectedEmails as $email){
+            foreach($emails as $email){
                 if(null === $email->getEmailFrom()){
                     $email->setEmailFrom($from);
                 } else {
@@ -34,28 +70,28 @@ class EmailController extends CRUDController
                     'send_subject' => $email->getSubject(),
                     'send_body' => $email->getBody()
                 ));
-                
+
                 if(!empty($emails)){
                     foreach($emails as $to){
                         $sent = $emailSender->send($from, array($to), $email->getSubject(), $body);
 
                         if(!$sent){
-                            $errors[] = sprintf('%s - %s', $email->getSubject(), $to);
+                            $this->errors[] = sprintf('%s - %s', $email->getSubject(), $to);
                         }
                     }
 
                     $email->setSent(new \Datetime());
                     $modelManager->update($email);
                 } else {
-                    $errors[] = sprintf('%s - %s', $email->getSubject(), $this->admin->trans('email_to_empty'));
+                    $this->errors[] = sprintf('%s - %s', $email->getSubject(), $this->admin->trans('email_to_empty'));
                 }
             }
 
-            if(!empty($errors)){
+            if(!empty($this->errors)){
                 $error = $this->admin->trans('flash_batch_send_email_error');
                 $error .= '<ul>';
 
-                foreach($errors as $err){
+                foreach($this->errors as $err){
                     $error .= sprintf('<li>%s</li>', $err);
                 }
 
@@ -69,7 +105,5 @@ class EmailController extends CRUDController
             $this->handleModelManagerException($e);
             $this->addFlash('sonata_flash_error', $this->admin->trans('flash_batch_send_email_error'), $this->admin->flashIcon);
         }
-
-        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
     }
 }

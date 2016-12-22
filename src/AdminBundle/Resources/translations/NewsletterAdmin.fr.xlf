@@ -26,6 +26,18 @@
                 <source>list.label_token</source>
                 <target>Code unique</target>
             </trans-unit>
+            <trans-unit id="list.label__action">
+                <source>list.label__action</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_title">
+                <source>list.delete_confirmation_title</source>
+                <target>Supprimer une newsletter</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_message">
+                <source>list.delete_confirmation_message</source>
+                <target>Voulez-vous vraiment supprimer cette newsletter ?</target>
+            </trans-unit>
             <trans-unit id="form.label_mail">
                 <source>form.label_mail</source>
                 <target>Email</target>

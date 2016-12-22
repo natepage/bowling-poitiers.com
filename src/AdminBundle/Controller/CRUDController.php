@@ -21,6 +21,43 @@ class CRUDController extends BaseCRUDController
         parent::addFlash($type, $message);
     }
 
+    public function deleteAction($id)
+    {
+        $object = $this->admin->getObject($id);
+
+        if(!$object){
+            throw $this->createNotFoundException('Unable to find the object.');
+        }
+
+        $objectName = $this->admin->toString($object);
+
+        try {
+            $this->admin->delete($object);
+
+            $this->addFlash(
+                'sonata_flash_success',
+                $this->admin->trans(
+                    'flash_delete_success',
+                    array('%name%' => $this->escapeHtml($objectName)),
+                    'SonataAdminBundle'
+                )
+            );
+        } catch (ModelManagerException $e) {
+            $this->handleModelManagerException($e);
+
+            $this->addFlash(
+                'sonata_flash_error',
+                $this->admin->trans(
+                    'flash_delete_error',
+                    array('%name%' => $this->escapeHtml($objectName)),
+                    'SonataAdminBundle'
+                )
+            );
+        }
+
+        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
     public function batchActionDelete(ProxyQueryInterface $query)
     {
         $this->admin->checkAccess('batchDelete');

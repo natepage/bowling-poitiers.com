@@ -64,6 +64,18 @@ class CompetitionAdmin extends AbstractAdmin
             ->add('start', 'datetime', array('format' => 'd/m/Y, H:i'))
             ->add('end', 'datetime', array('format' => 'd/m/Y, H:i'))
             ->add('author')
+            ->add('_action', null, array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(
+                        'template' => '@Admin/CRUD/List/action_delete.html.twig',
+                        'confirmation' => array(
+                            'title' => $this->trans('list.delete_confirmation_title'),
+                            'message' => $this->trans('list.delete_confirmation_message')
+                        )
+                    )
+                )
+            ))
         ;
     }
 

@@ -1,0 +1,9 @@
+<a href="#" class="btn btn-sm btn-default"
+   onclick="askConfirmation(this); return false;"
+   data-title="Partager un article à la newsletter"
+   data-message="Voulez-vous vraiment partager cet article à la newsletter ?"
+   data-confirm-label='<i class="fa fa-share-alt"></i> Partager'
+   data-confirm-class="btn-primary"
+   data-url="{{ admin.generateObjectUrl('newsletter', object) }}">
+    <i class="fa fa-send"></i> <span class="hidden-xs">Envoyer</span>
+</a>

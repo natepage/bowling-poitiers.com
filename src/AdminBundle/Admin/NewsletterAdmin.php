@@ -47,6 +47,18 @@ class NewsletterAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('mail')
             ->add('token')
+            ->add('_action', null, array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(
+                        'template' => '@Admin/CRUD/List/action_delete.html.twig',
+                        'confirmation' => array(
+                            'title' => $this->trans('list.delete_confirmation_title'),
+                            'message' => $this->trans('list.delete_confirmation_message')
+                        )
+                    )
+                )
+            ))
         ;
     }
 
@@ -63,5 +75,11 @@ class NewsletterAdmin extends AbstractAdmin
             ->add('mail')
             ->add('token')
         ;
+    }
+
+    public function preValidate($newsletter)
+    {
+        $tokenGenerator = $this->getConfigurationPool()->getContainer()->get('fos_user.util.token_generator');
+        $newsletter->setToken($tokenGenerator->generateToken());
     }
 }

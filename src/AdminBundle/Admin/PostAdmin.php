@@ -5,6 +5,7 @@ namespace AdminBundle\Admin;
 use AppBundle\Entity\Post;
 use AppBundle\Utils\Facebook\FacebookApplicationManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -64,6 +65,11 @@ class PostAdmin extends AbstractAdmin
      * @var ArrayCollection
      */
     private $oldPdfs;
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('newsletter', $this->getRouterIdParameter() . '/newsletter');
+    }
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -125,6 +131,21 @@ class PostAdmin extends AbstractAdmin
             ->add('categories')
             ->add('published')
             ->add('sharedNewsletter', 'datetime', array('format' => 'd/m/Y, H:i'))
+            ->add('_action', null, array(
+                'actions' => array(
+                    'newsletter' => array(
+                        'template' => '@Admin/CRUD/List/action_post_newsletter.html.twig'
+                    ),
+                    'edit' => array(),
+                    'delete' => array(
+                        'template' => '@Admin/CRUD/List/action_delete.html.twig',
+                        'confirmation' => array(
+                            'title' => $this->trans('list.delete_confirmation_title'),
+                            'message' => $this->trans('list.delete_confirmation_message')
+                        )
+                    )
+                )
+            ))
         ;
     }
 

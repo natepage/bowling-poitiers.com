@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Controller;
 
+use AppBundle\Entity\Post;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -68,6 +69,24 @@ class PostController extends CRUDController
         } catch (ModelManagerException $e) {
             $this->handleModelManagerException($e);
             $this->addFlash('sonata_flash_error', 'flash_batch_delete_error');
+        }
+
+        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
+    public function newletterAction()
+    {
+        $post = $this->admin->getSubject();
+
+        if(!$post or !$post instanceof Post){
+            throw $this->createNotFoundException('Unable to find the post object.');
+        }
+
+        try {
+            $this->shareNewsletter(array($post));
+        } catch (ModelManagerException $e) {
+            $this->handleModelManagerException($e);
+            $this->addFlash('sonata_flash_error', $this->admin->trans('flash_batch_newsletter_error'), $this->admin->flashNewsletterIcon);
         }
 
         return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));

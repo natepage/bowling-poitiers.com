@@ -82,6 +82,18 @@
                 <source>list.label_sent</source>
                 <target>Envoyé le</target>
             </trans-unit>
+            <trans-unit id="list.label__action">
+                <source>list.label__action</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_title">
+                <source>list.delete_confirmation_title</source>
+                <target>Supprimer un email</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_message">
+                <source>list.delete_confirmation_message</source>
+                <target>Voulez-vous vraiment supprimer cet email ?</target>
+            </trans-unit>
             <trans-unit id="show.label_created">
                 <source>show.label_created</source>
                 <target>Crée le</target>

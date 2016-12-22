@@ -1,0 +1,9 @@
+<a href="#" class="btn btn-sm btn-default"
+   onclick="askConfirmation(this); return false;"
+   data-title="Envoyer un email"
+   data-message="Voulez-vous vraiment envoyer cet email ?"
+   data-confirm-label='<i class="fa fa-send"></i> Envoyer'
+   data-confirm-class="btn-primary"
+   data-url="{{ admin.generateObjectUrl('send', object) }}">
+    <i class="fa fa-send"></i> <span class="hidden-xs">Envoyer</span>
+</a>

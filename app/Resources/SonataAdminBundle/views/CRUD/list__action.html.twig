@@ -1,0 +1,9 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    <div class="btn-group" role="group" style="display: flex">
+        {% for action in field_description.options.actions %}
+            {% include action.template %}
+        {% endfor %}
+    </div>
+{% endblock %}

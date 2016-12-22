@@ -15,16 +15,36 @@ class CompetitionController extends CRUDController
         $competition->setAuthor($this->getUser());
     }
 
+    public function deleteAction($id)
+    {
+        $competition = $this->admin->getObject($id);
+
+        if(!$competition){
+            throw $this->createNotFoundException('Unable to find the object.');
+        }
+
+        $this->deleteCompetitions(array($competition));
+
+        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
     public function batchActionDelete(ProxyQueryInterface $query)
     {
         $this->admin->checkAccess('batchDelete');
 
-        $modelManager = $this->admin->getModelManager();
         $selectedCompetitions = $query->execute();
+        $this->deleteCompetitions($selectedCompetitions);
+
+        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
+    private function deleteCompetitions($competitions)
+    {
+        $modelManager = $this->admin->getModelManager();
         $eventDispatcher = $this->get('event_dispatcher');
 
         try {
-            foreach($selectedCompetitions as $competition){
+            foreach($competitions as $competition){
                 $modelManager->delete($competition);
 
                 $event = new CompetitionEvent($competition);
@@ -36,7 +56,5 @@ class CompetitionController extends CRUDController
             $this->handleModelManagerException($e);
             $this->addFlash('sonata_flash_error', 'flash_batch_delete_error');
         }
-
-        return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
     }
 }

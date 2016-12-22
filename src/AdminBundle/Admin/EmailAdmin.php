@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class EmailAdmin extends AbstractAdmin
@@ -34,6 +35,12 @@ class EmailAdmin extends AbstractAdmin
         '_sort_order' => 'DESC',
         '_sort_by' => 'created'
     );
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('preview', $this->getRouterIdParameter() . '/preview');
+        $collection->add('send', $this->getRouterIdParameter() . '/send');
+    }
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -64,6 +71,24 @@ class EmailAdmin extends AbstractAdmin
             ->add('created', 'datetime', array('format' => 'd/m/Y, H:i'))
             ->addIdentifier('subject')
             ->add('sent', 'datetime', array('format' => 'd/m/Y, H:i'))
+            ->add('_action', null, array(
+                'actions' => array(
+                    'preview' => array(
+                        'template' => '@Admin/CRUD/List/action_email_preview.html.twig'
+                    ),
+                    'send' => array(
+                        'template' => '@Admin/CRUD/List/action_email_send.html.twig'
+                    ),
+                    'edit' => array(),
+                    'delete' => array(
+                        'template' => '@Admin/CRUD/List/action_delete.html.twig',
+                        'confirmation' => array(
+                            'title' => $this->trans('list.delete_confirmation_title'),
+                            'message' => $this->trans('list.delete_confirmation_message')
+                        )
+                    )
+                )
+            ))
         ;
     }
 

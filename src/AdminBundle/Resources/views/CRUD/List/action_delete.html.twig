@@ -1,0 +1,15 @@
+{% if field_description.options.actions.delete.confirmation is defined %}
+    {% set confirmation = field_description.options.actions.delete.confirmation %}
+
+    <a href="#" class="btn btn-sm btn-default"
+       onclick="askConfirmation(this); return false;"
+       data-title="{{ confirmation.title }}"
+       data-message="{{ confirmation.message }}"
+       data-confirm-label='<i class="fa fa-times"></i> Supprimer'
+       data-confirm-class="btn-danger"
+       data-url="{{ admin.generateObjectUrl('delete', object) }}">
+        <i class="fa fa-times"></i> <span class="hidden-xs">Supprimer</span>
+    </a>
+{% else %}
+    <i>Confirmation de suppression non configurée</i>
+{% endif %}

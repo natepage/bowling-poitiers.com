@@ -58,6 +58,18 @@
                 <source>list.label_published</source>
                 <target>Publiée</target>
             </trans-unit>
+            <trans-unit id="list.label__action">
+                <source>list.label__action</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_title">
+                <source>list.delete_confirmation_title</source>
+                <target>Supprimer une page</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_message">
+                <source>list.delete_confirmation_message</source>
+                <target>Voulez-vous vraiment supprimer cette page ?</target>
+            </trans-unit>
             <trans-unit id="form.label_title">
                 <source>form.label_title</source>
                 <target>Titre</target>

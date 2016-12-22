@@ -38,6 +38,18 @@
                 <source>list.label_posts_count</source>
                 <target>Nombre d'articles</target>
             </trans-unit>
+            <trans-unit id="list.label__action">
+                <source>list.label__action</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_title">
+                <source>list.delete_confirmation_title</source>
+                <target>Supprimer une catégorie</target>
+            </trans-unit>
+            <trans-unit id="list.delete_confirmation_message">
+                <source>list.delete_confirmation_message</source>
+                <target>Voulez-vous vraiment supprimer cette catégorie ?</target>
+            </trans-unit>
             <trans-unit id="form.tab_category">
                 <source>form.tab_category</source>
                 <target>Catégorie</target>
