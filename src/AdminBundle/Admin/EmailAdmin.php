@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Admin;
 
+use AdminBundle\Form\Type\ContactFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -51,7 +52,7 @@ class EmailAdmin extends AbstractAdmin
             ->end()
             ->tab('tab.contacts')
                 ->with('box.contacts')
-                    ->add('contacts', 'admin_contacts', array('required' => false))
+                    ->add('contacts', ContactFormType::class, array('required' => false))
                 ->end()
             ->end()
         ;

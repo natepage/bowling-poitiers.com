@@ -30,22 +30,24 @@ class EmailController extends CRUDController
                 }
 
                 $emails = in_array('all', $email->getContacts()) ? $contactProvider->getContactsEmail() : $email->getContacts();
-                $subject = sprintf('[BCP] %s', $email->getSubject());
-                $body = $templating->render('@App/Utils/email_structure.html.twig', array('body' => $email->getBody()));
+                $body = $templating->render('@Admin/Batch/Email/send.html.twig', array(
+                    'send_subject' => $email->getSubject(),
+                    'send_body' => $email->getBody()
+                ));
                 
                 if(!empty($emails)){
                     foreach($emails as $to){
-                        $sent = $emailSender->send($from, array($to), $subject, $body);
+                        $sent = $emailSender->send($from, array($to), $email->getSubject(), $body);
 
                         if(!$sent){
-                            $errors[] = sprintf('%s - %s', $subject, $to);
+                            $errors[] = sprintf('%s - %s', $email->getSubject(), $to);
                         }
                     }
 
                     $email->setSent(new \Datetime());
                     $modelManager->update($email);
                 } else {
-                    $errors[] = sprintf('%s - %s', $subject, $this->admin->trans('email_to_empty'));
+                    $errors[] = sprintf('%s - %s', $email->getSubject(), $this->admin->trans('email_to_empty'));
                 }
             }
 

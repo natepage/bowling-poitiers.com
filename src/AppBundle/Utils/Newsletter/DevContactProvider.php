@@ -4,33 +4,18 @@ namespace AppBundle\Utils\Newsletter;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-class DevContactProvider implements ContactProviderInterface
+class DevContactProvider extends ContactProvider
 {
-    /**
-     * @var ObjectManager
-     */
-    private $om;
-
     /**
      * @var integer
      */
-    private $id;
-
-    /**
-     * @var boolean
-     */
-    private $isSuperAdmin;
+    protected $id;
 
     public function __construct(ObjectManager $om, $id)
     {
-        $this->om = $om;
-        $this->id = $id;
-        $this->isSuperAdmin = false;
-    }
+        parent::__construct($om);
 
-    public function setIsSuperAdmin($isSuperAdmin)
-    {
-        $this->isSuperAdmin = $isSuperAdmin;
+        $this->id = $id;
     }
 
     public function getContacts()
@@ -46,39 +31,5 @@ class DevContactProvider implements ContactProviderInterface
                 ->setUsername($user->getUsername());
 
         return array($contact);
-    }
-
-    public function getContactsFormRepresentation()
-    {
-        $formRepresentation = array();
-
-        foreach($this->getContacts() as $contact){
-            if(!array_key_exists($email = $contact->getEmail(), $formRepresentation)){
-                $username = $contact->getUsername();
-
-                if(null !== $username){
-                    $render = sprintf('%s - %s', $username, $email);
-                } else {
-                    $render = $email;
-                }
-
-                $formRepresentation[$email] = $render;
-            }
-        }
-
-        return $formRepresentation;
-    }
-
-    public function getContactsEmail()
-    {
-        $emails = array();
-
-        foreach($this->getContacts() as $contact){
-            if(!in_array($email = $contact->getEmail(), $emails)){
-                $emails[] = $email;
-            }
-        }
-
-        return $emails;
     }
 }
