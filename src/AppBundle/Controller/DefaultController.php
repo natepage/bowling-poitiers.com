@@ -6,7 +6,7 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Page;
 use AppBundle\Entity\Post;
-use AppBundle\Form\ReportFeedbackType;
+use AppBundle\Form\Type\ReportFeedbackType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
