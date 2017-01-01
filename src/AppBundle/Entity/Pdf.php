@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PdfRepository")
  * @ORM\HasLifecycleCallbacks
+ * @Serializer\ExclusionPolicy("all")
  */
 class Pdf
 {
@@ -26,6 +28,7 @@ class Pdf
 
     /**
      * @ORM\Column(name="alt", type="string", length=255)
+     * @Serializer\Expose()
      */
     private $alt;
 
@@ -45,6 +48,8 @@ class Pdf
     private $file;
 
     private $tempFilename;
+
+    private $webPath = null;
 
     /**
      * For sonata's form rendering.
@@ -131,9 +136,27 @@ class Pdf
         return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
+    public function setWebPath($webPath)
+    {
+        $this->webPath = $webPath;
+        return $this;
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("web_path")
+     */
     public function getWebPath()
     {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+        if($this->webPath !== null){
+            return $this->webPath;
+        }
+
+        if($this->getId() && $this->getUrl()){
+            return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+        } else {
+            return '';
+        }
     }
 
 

@@ -2,12 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Api\ImageWithCachePaths;
 use AppBundle\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\SerializationContext;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -27,7 +29,7 @@ class ApiRestController extends Controller
      *     defaults={"page": 1}
      * )
      */
-    public function getPostsAction($format, $page)
+    public function getPostsAction(Request $request, $format, $page)
     {
         $query = $this->getDoctrine()->getRepository('AppBundle:Post')->getIndexQuery();
         $paginator = $this->get('knp_paginator');
@@ -49,11 +51,22 @@ class ApiRestController extends Controller
 
             if($previewImage instanceof Image){
                 $images = new ArrayCollection();
-                $cachePath = $imagineCacheManager->getBrowserPath($previewImage->getWebPath(), "post_preview");
+                $apiImage = new ImageWithCachePaths();
 
-                $previewImage->setWebPath($cachePath);
-                $images->add($previewImage);
+                $apiImage
+                    ->setAlt($previewImage->getAlt())
+                    ->setWebPaths(array(
+                        'post_preview' => $imagineCacheManager->getBrowserPath($previewImage->getWebPath(), "post_preview"),
+                        'post_view' => null
+                    ))
+                ;
+
+                $images->add($apiImage);
                 $post->setImages($images);
+            }
+
+            foreach($post->getPdfs() as $pdf){
+                $pdf->setWebPath($request->getUriForPath("/" . $pdf->getWebPath()));
             }
 
             $data["posts"][] = $post;
@@ -68,9 +81,32 @@ class ApiRestController extends Controller
      *     name="api_rest_get_post_by_id"
      * )
      */
-    public function getPostBySlugAction($format, $slug)
+    public function getPostBySlugAction(Request $request, $format, $slug)
     {
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->findOneBy(array('slug' => $slug));
+
+        $imagineCacheManager = $this->get('liip_imagine.cache.manager');
+        $images = new ArrayCollection();
+
+        foreach($post->getImages() as $image){
+            $apiImage = new ImageWithCachePaths();
+
+            $apiImage
+                ->setAlt($image->getAlt())
+                ->setWebPaths(array(
+                    'post_preview' => $imagineCacheManager->getBrowserPath($image->getWebPath(), "post_preview"),
+                    'post_view' => $imagineCacheManager->getBrowserPath($image->getWebPath(), "post_view")
+                ))
+            ;
+
+            $images->add($apiImage);
+        }
+
+        $post->setImages($images);
+
+        foreach($post->getPdfs() as $pdf){
+            $pdf->setWebPath($request->getUriForPath("/" . $pdf->getWebPath()));
+        }
 
         return $this->generateResponse($post, $format);
     }

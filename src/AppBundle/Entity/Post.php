@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Api\ImageWithCachePaths;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -112,7 +113,7 @@ class Post
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="post", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
-     * @Serializer\Type("ArrayCollection<AppBundle\Entity\Image>")
+     * @Serializer\Type("ArrayCollection<AppBundle\Api\ImageWithCachePaths>")
      * @Serializer\Groups({"list", "details"})
      */
     private $images;
@@ -131,7 +132,8 @@ class Post
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Pdf", mappedBy="post", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
-     * @Serializer\Exclude()
+     * @Serializer\Type("ArrayCollection<AppBundle\Entity\Pdf>")
+     * @Serializer\Groups({"list", "details"})
      */
     private $pdfs;
 
@@ -510,7 +512,9 @@ class Post
     {
         foreach($images as $image){
             if(null !== $image){
-                $image->setPost($this);
+                if(!$image instanceof ImageWithCachePaths){
+                    $image->setPost($this);
+                }
             } else {
                 $images->removeElement($image);
             }
