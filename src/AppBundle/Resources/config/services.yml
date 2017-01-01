@@ -12,7 +12,7 @@ services:
         arguments:
             - "@bcp.contact_provider"
             - "@templating"
-            - %newsletter_from%
+            - "%newsletter_from%"
             - "@translator"
             - "@bcp.email_sender"
 

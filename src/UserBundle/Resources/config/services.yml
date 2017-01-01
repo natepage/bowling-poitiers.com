@@ -2,8 +2,8 @@ services:
     user.security.roles_list_builder:
         class: UserBundle\Security\RolesListBuilder
         arguments:
-            - %security.role_hierarchy.roles%
-            - %bcp_user.excluded_admin_roles%
+            - "%security.role_hierarchy.roles%"
+            - "%bcp_user.excluded_admin_roles%"
             - "@user.security.roles_transformer"
             - "@security.authorization_checker"
 
