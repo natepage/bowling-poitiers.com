@@ -3,7 +3,6 @@
 namespace AdminBundle\Admin;
 
 use AppBundle\Entity\Post;
-use AppBundle\Utils\Facebook\FacebookApplicationManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
