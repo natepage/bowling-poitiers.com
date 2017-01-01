@@ -95,16 +95,3 @@ $(document).scroll(function() {
         }
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-

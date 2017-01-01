@@ -245,5 +245,3 @@
       $.error('Method ' + method + ' does not exist!');
   };
 }(jQuery);
-
-
