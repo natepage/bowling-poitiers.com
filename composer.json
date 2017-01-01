@@ -1,5 +1,6 @@
 {
     "name": "nathanpage/bcp_v2",
+    "description": "Symfony project of the website http://bowling-poitiers.com",
     "license": "proprietary",
     "type": "project",
     "autoload": {
