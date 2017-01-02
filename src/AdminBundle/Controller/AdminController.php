@@ -14,7 +14,7 @@ class AdminController extends Controller
      * @Route("/admin/cookie/{cookieName}", name="admin_cookie")
      * @Method("GET")
      */
-    public function cookie($cookieName = null)
+    public function cookieAction($cookieName = null)
     {
         if(null === $cookieName || !is_scalar($cookieName)) {
             throw $this->createNotFoundException();

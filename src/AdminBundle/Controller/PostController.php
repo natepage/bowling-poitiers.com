@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 
 class PostController extends CRUDController
 {
-    public function preList(Request $request)
+    protected function preList(Request $request)
     {
         if($this->admin->hasRole('ROLE_POST_ADMIN')){
             $user = $this->getUser();
@@ -37,12 +37,12 @@ class PostController extends CRUDController
         }
     }
 
-    public function preCreate(Request $request, $post)
+    protected function preCreate(Request $request, $post)
     {
         $post->setAuthor($this->getUser());
     }
 
-    public function preEdit(Request $request, $post)
+    protected function preEdit(Request $request, $post)
     {
         $this->admin->handleOldElements($post, array('images', 'pdfs'));
     }
