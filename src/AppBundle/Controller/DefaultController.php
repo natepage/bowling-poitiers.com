@@ -134,9 +134,12 @@ class DefaultController extends Controller
     public function registerNewsletterAction(Request $request)
     {
         $mail = $request->request->get('mail_address');
+        $reCaptchaResponse = $request->request->get('g-recaptcha-response');
+
         $emailConstraint = new EmailConstraint();
         $emailConstraint->message = 'Votre adresse mail est invalide...';
         $errors = $this->get('validator')->validate($mail, $emailConstraint);
+        $isHuman = $this->get('bcp.recaptcha')->isHuman($reCaptchaResponse);
 
         $em = $this->getDoctrine()->getManager();
         $newsletterAlreadyExist = $em->getRepository('AppBundle:Newsletter')->findOneBy(array('mail' => $mail));
@@ -144,7 +147,7 @@ class DefaultController extends Controller
 
         if(null !== $newsletterAlreadyExist || null !== $userMailAlreadyExist){
             $this->addFlash('danger', 'Cette adresse mail a déjà été ajoutée.');
-        } elseif($errors->count() === 0 && $mail != ''){
+        } elseif($mail !== '' && $isHuman && $errors->count() === 0){
             $newsletter = new Newsletter();
             $newsletter->setMail($mail);
             $newsletter->setToken($this->get('fos_user.util.token_generator')->generateToken());

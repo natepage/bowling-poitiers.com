@@ -2,6 +2,11 @@ services:
     bcp.external_url_generator:
         class: AppBundle\Utils\ExternalUrlGenerator
 
+    bcp.recaptcha:
+        class: AppBundle\Utils\Google\ReCaptcha
+        arguments:
+            - "%google_recaptcha_secret%"
+
     bcp.contact_provider:
         class: AppBundle\Utils\Newsletter\ContactProvider
         arguments:

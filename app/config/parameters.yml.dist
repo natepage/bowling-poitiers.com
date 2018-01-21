@@ -31,3 +31,6 @@ parameters:
     # Google parameters
     google_app_id:            ChangeItByYours
     google_app_secret:        ChangeItByYours
+
+    # Google reCAPTCHA parameters
+    google_recaptcha_secret:  ChangeItByYours

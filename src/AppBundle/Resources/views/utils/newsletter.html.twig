@@ -1,19 +1,43 @@
 <div class="newsletter-ctn">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 col-xs-12 text-center">
+            <div class="col-sm-12 col-xs-12 text-center">
                 <h6>
                     Abonnez vous à notre newsletter pour rester informé !
+
+                    <button type="button" class="btn btn-round btn-fill btn-info" data-toggle="modal" data-target="#newsletterForm">
+                        <i class="fa fa-newspaper-o"></i> S'abonner
+                    </button>
                 </h6>
             </div>
-            <form method="POST" class="form-inline" action="{{ path('newsletter_register') }}">
-                <div class="col-sm-2 col-xs-6">
-                    <input type="email" name="mail_address" placeholder="Votre email..." class="form-control" required>
-                </div>
-                <div class="col-sm-2 col-xs-6">
-                    <button type="submit" class="btn btn-round btn-fill btn-info"><i class="fa fa-newspaper-o"></i> S'abonner</button>
-                </div>
-            </form>
+            <div class="modal fade" id="newsletterForm" tabindex="-1" role="dialog" aria-labelledby="newsletterFormLabel" aria-hidden="true">
+                <form method="POST" class="form-inline" action="{{ path('newsletter_register') }}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="newsletterFormLabel">
+                                    Abonnez vous à notre newsletter
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <input
+                                        type="email"
+                                        name="mail_address"
+                                        placeholder="Votre email..."
+                                        class="form-control"
+                                        style="margin-bottom: 10px"
+                                        required
+                                >
+                                <div class="g-recaptcha" data-sitekey="6LdsxkEUAAAAAEfAAsqHAeABDhDCPqC-YZyhfmG0"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-fill btn-secondary" data-dismiss="modal">Plus tard</button>
+                                <button type="submit" class="btn btn-fill btn-info">S'abonner</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
