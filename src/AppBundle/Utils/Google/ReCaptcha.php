@@ -39,9 +39,9 @@ class ReCaptcha
                 ]
             ]);
 
-            dump(json_decode($response->getBody(), true));
+            $body = json_decode($response->getBody(), true);
 
-            return false;
+            return isset($body['success']) && $body['success'];
         } catch (RequestException $exception) {
             return false;
         }

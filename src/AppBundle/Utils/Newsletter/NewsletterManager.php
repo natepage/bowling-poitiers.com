@@ -3,6 +3,7 @@
 namespace AppBundle\Utils\Newsletter;
 
 use AppBundle\Entity\Post;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -34,6 +35,11 @@ class NewsletterManager implements NewsletterManagerInterface
     private $emailSender;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @var boolean
      */
     private $isSuperAdmin;
@@ -46,7 +52,8 @@ class NewsletterManager implements NewsletterManagerInterface
         EngineInterface $templating,
         $from,
         TranslatorInterface $translator,
-        EmailSenderInterface $emailSender
+        EmailSenderInterface $emailSender,
+        LoggerInterface $logger
     )
     {
         $this->contactProvider = $contactProvider;
@@ -54,6 +61,7 @@ class NewsletterManager implements NewsletterManagerInterface
         $this->from = $from;
         $this->translator = $translator;
         $this->emailSender = $emailSender;
+        $this->logger = $logger;
         $this->isSuperAdmin = false;
     }
 
@@ -76,7 +84,7 @@ class NewsletterManager implements NewsletterManagerInterface
         $now = new \DateTime();
         $from = $this->from;
         $subject = $this->getSubject($now);
-        
+
         foreach($contacts as $contact){
             if(!$contact instanceof ContactInterface){
                 throw new \InvalidArgumentException(sprintf("%s must implement %s.", get_class($contact), ContactInterface::class));
@@ -88,8 +96,14 @@ class NewsletterManager implements NewsletterManagerInterface
             ));
             $to = array($contact->getEmail());
 
-            if($this->emailSender->send($from, $to, $subject, $template) && !$this->isSuperAdmin){
-                $post->setSharedNewsletter($now);
+            try {
+                if($this->emailSender->send($from, $to, $subject, $template) && !$this->isSuperAdmin){
+                    $post->setSharedNewsletter($now);
+                }
+            }catch (\Exception $e) {
+                $this->logger->error(sprintf('Newsletter not sent to %s', $contact->getEmail()), array(
+                    'exception' => $e->getMessage()
+                ));
             }
         }
     }
@@ -133,6 +147,12 @@ class NewsletterManager implements NewsletterManagerInterface
                     $this->emailSender->send($from, $to, $subject, $template);
                     $response['sended'] = true;
                 } catch (\Exception $e) {
+                    $response['errors'][] = $this->translator->trans('flash_batch_newsletter_error_specific_email', array(
+                        '%contact_email%' => $contact->getEmail()
+                    ), 'PostAdmin');
+                    $this->logger->error(sprintf('Newsletter not sent to %s', $contact->getEmail()), array(
+                        'exception' => $e->getMessage()
+                    ));
                 }
             }
 

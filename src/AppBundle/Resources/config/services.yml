@@ -20,6 +20,7 @@ services:
             - "%newsletter_from%"
             - "@translator"
             - "@bcp.email_sender"
+            - "@logger"
 
     bcp.email_sender:
         class: AppBundle\Utils\Newsletter\EmailSender
