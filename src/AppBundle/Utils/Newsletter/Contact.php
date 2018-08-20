@@ -24,10 +24,16 @@ class Contact implements ContactInterface
      */
     private $unSubscribable;
 
+    /**
+     * @var string
+     */
+    private $type;
+
     public function __construct()
     {
         $this->username = '';
         $this->token = '';
+        $this->type = '';
         $this->unSubscribable = false;
     }
 
@@ -101,5 +107,29 @@ class Contact implements ContactInterface
         $this->unSubscribable = $unSubscribable;
 
         return $this;
+    }
+
+    /**
+     * Set type.
+     *
+     * @param string $type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

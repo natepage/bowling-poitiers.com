@@ -43,6 +43,7 @@ class DevContactProvider implements ContactProviderInterface
 
         $contact = new Contact();
         $contact->setEmail($user->getEmail())
+                ->setType(ContactInterface::TYPE_USER)
                 ->setUsername($user->getUsername());
 
         return array($contact);
@@ -75,6 +76,50 @@ class DevContactProvider implements ContactProviderInterface
 
         foreach($this->getContacts() as $contact){
             if(!in_array($email = $contact->getEmail(), $emails)){
+                $emails[] = $email;
+            }
+        }
+
+        return $emails;
+    }
+
+    /**
+     * Returns an array with users email.
+     *
+     * @return array
+     */
+    public function getUsersEmail()
+    {
+        $emails = array();
+
+        foreach ($this->getContacts() as $contact) {
+            if ($contact->getType() !== ContactInterface::TYPE_USER) {
+                continue;
+            }
+
+            if(!\in_array($email = $contact->getEmail(), $emails, true)){
+                $emails[] = $email;
+            }
+        }
+
+        return $emails;
+    }
+
+    /**
+     * Returns an array with newsletter email.
+     *
+     * @return array
+     */
+    public function getNewslettersEmail()
+    {
+        $emails = array();
+
+        foreach ($this->getContacts() as $contact) {
+            if ($contact->getType() !== ContactInterface::TYPE_NEWSLETTER) {
+                continue;
+            }
+
+            if(!\in_array($email = $contact->getEmail(), $emails, true)){
                 $emails[] = $email;
             }
         }

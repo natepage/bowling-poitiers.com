@@ -29,39 +29,42 @@ class ContactProvider implements ContactProviderInterface
 
     public function getContacts()
     {
-        /*if($this->isSuperAdmin){
-            $user = $this->om->getRepository('UserBundle:User')->find(1);
-
-            $contact = new Contact();
-            $contact->setUsername($user->getUsername())
-                    ->setEmail($user->getEmail());
-
-            return array($contact);
-        }*/
-
         $contacts = array();
         $emails = array();
 
+        /**
+         * @var \UserBundle\Entity\User $user
+         */
         foreach($this->getUsers() as $user){
-            if(!in_array($email = $user->getEmail(), $emails)){
+            if(!\in_array($email = $user->getEmail(), $emails, true)){
                 $emails[] = $email;
 
                 $contact = new Contact();
                 $contact->setEmail($email)
-                        ->setUsername($user->getUsername());
+                        ->setUsername($user->getUsername())
+                        ->setType(ContactInterface::TYPE_USER);
 
                 $contacts[] = $contact;
             }
         }
 
+        /**
+         * @var \AppBundle\Entity\Newsletter $newsletter
+         */
         foreach($this->getNewsletters() as $newsletter){
-            if(!in_array($email = $newsletter->getMail(), $emails)){
+            if(!\in_array($email = $newsletter->getMail(), $emails, true)){
+                // If not activated, skip
+                if ($newsletter->isActivated() === false && (((int)\date('Ymd')) >= 20180901)) { // Remove that later
+                    continue;
+                }
+
                 $emails[] = $email;
 
                 $contact = new Contact();
                 $contact->setEmail($email)
                         ->setToken($newsletter->getToken())
-                        ->setUnSubscribable(true);
+                        ->setUnSubscribable(true)
+                        ->setType(ContactInterface::TYPE_NEWSLETTER);
 
                 $contacts[] = $contact;
             }
@@ -75,16 +78,15 @@ class ContactProvider implements ContactProviderInterface
         $formRepresentation = array();
 
         foreach($this->getContacts() as $contact){
-            if(!array_key_exists($email = $contact->getEmail(), $formRepresentation)){
-                $username = $contact->getUsername();
+            if(!array_key_exists($email = $contact->getEmail(), $formRepresentation)) {
+                $render = \sprintf(
+                    '[%s] %s%s',
+                    \strtoupper($contact->getType()),
+                    $contact->getUsername() !== null ? $contact->getUsername() . ' - ' : '',
+                    $email
+                );
 
-                if(null !== $username){
-                    $render = sprintf('%s - %s', $username, $email);
-                } else {
-                    $render = $email;
-                }
-
-                $formRepresentation[$email] = $render;
+                $formRepresentation[$render] = $email;
             }
         }
 
@@ -96,7 +98,51 @@ class ContactProvider implements ContactProviderInterface
         $emails = array();
 
         foreach($this->getContacts() as $contact){
-            if(!in_array($email = $contact->getEmail(), $emails)){
+            if(!\in_array($email = $contact->getEmail(), $emails, true)){
+                $emails[] = $email;
+            }
+        }
+
+        return $emails;
+    }
+
+    /**
+     * Returns an array with users email.
+     *
+     * @return array
+     */
+    public function getUsersEmail()
+    {
+        $emails = array();
+
+        foreach ($this->getContacts() as $contact) {
+            if ($contact->getType() !== ContactInterface::TYPE_USER) {
+                continue;
+            }
+
+            if(!\in_array($email = $contact->getEmail(), $emails, true)){
+                $emails[] = $email;
+            }
+        }
+
+        return $emails;
+    }
+
+    /**
+     * Returns an array with newsletter email.
+     *
+     * @return array
+     */
+    public function getNewslettersEmail()
+    {
+        $emails = array();
+
+        foreach ($this->getContacts() as $contact) {
+            if ($contact->getType() !== ContactInterface::TYPE_NEWSLETTER) {
+                continue;
+            }
+
+            if(!\in_array($email = $contact->getEmail(), $emails, true)){
                 $emails[] = $email;
             }
         }

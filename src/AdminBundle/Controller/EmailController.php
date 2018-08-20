@@ -15,7 +15,6 @@ class EmailController extends CRUDController
 
         $modelManager = $this->admin->getModelManager();
         $emailSender = $this->get('bcp.email_sender');
-        $contactProvider = $this->get('bcp.contact_provider');
         $templating = $this->get('templating');
         $from = $this->getParameter('newsletter_from');
         $selectedEmails = $query->execute();
@@ -29,9 +28,9 @@ class EmailController extends CRUDController
                     $from = $email->getEmailFrom();
                 }
 
-                $emails = in_array('all', $email->getContacts()) ? $contactProvider->getContactsEmail() : $email->getContacts();
+                $emails = $this->getEmailsToSend($email->getContacts());
                 $subject = sprintf('[BCP] %s', $email->getSubject());
-                $body = $templating->render('@App/Utils/email_structure.html.twig', array('body' => $email->getBody()));
+                $body = $templating->render('@App/utils/email_structure.html.twig', array('body' => $email->getBody()));
                 
                 if(!empty($emails)){
                     foreach($emails as $to){
@@ -69,5 +68,32 @@ class EmailController extends CRUDController
         }
 
         return $this->redirect($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
+    /**
+     * Get emails to send to.
+     *
+     * @param array $contacts
+     *
+     * @return array
+     */
+    private function getEmailsToSend($contacts)
+    {
+        /** @var \AppBundle\Utils\Newsletter\ContactProviderInterface $contactProvider */
+        $contactProvider = $this->get('bcp.contact_provider');
+
+        if (\in_array('all', $contacts, true)) {
+            return $contactProvider->getContactsEmail();
+        }
+
+        if (\in_array('users', $contacts, true)) {
+            return $contactProvider->getUsersEmail();
+        }
+
+        if (\in_array('newsletters', $contacts, true)) {
+            return $contactProvider->getNewslettersEmail();
+        }
+
+        return $contacts;
     }
 }

@@ -157,6 +157,10 @@ class DefaultController extends Controller
 
             $flash = sprintf('L\'adresse mail "%s" a bien été ajoutée. Vous recevrez dès à présent nos nouveautés.', $mail);
             $this->addFlash('success', $flash);
+
+            // Send activate email
+            $newsletterManager = $this->get('bcp.newsletter');
+            $newsletterManager->alertActivate($newsletter);
         } else {
             $this->addFlash('danger', $emailConstraint->message);
         }
@@ -176,6 +180,33 @@ class DefaultController extends Controller
         $response->headers->setCookie($cookie);
 
         return $response;
+    }
+
+    /**
+     * @Route("/newsletter/activate/{token}", name="newsletter_activate")
+     * @Method("GET")
+     */
+    public function activateNewsletterAction($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $newsletter = $em->getRepository('AppBundle:Newsletter')->findOneBy(array('token' => $token));
+
+        // If newsletter not found, flash error message and early return
+        if (null === $newsletter) {
+            $this->addFlash('danger', 'Le token de vérification ne correspond pas...');
+
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
+        // Activate newsletter and save it
+        $newsletter->setActivated(true);
+        $em->flush();
+
+        // Success flash message
+        $this->addFlash('success', 'Merci d\'avoir activé votre subscription à notre newsletter');
+
+        // Redirect to homepage
+        return $this->redirect($this->generateUrl('homepage'));
     }
 
     /**

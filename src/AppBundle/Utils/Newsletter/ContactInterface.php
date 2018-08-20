@@ -4,6 +4,9 @@ namespace AppBundle\Utils\Newsletter;
 
 interface ContactInterface
 {
+    const TYPE_USER = 'user';
+    const TYPE_NEWSLETTER = 'newsletter';
+
     /**
      * Sets the username.
      *
@@ -63,4 +66,20 @@ interface ContactInterface
      * @return boolean
      */
     public function isUnSubscribable();
+
+    /**
+     * Set type.
+     *
+     * @param string $type
+     *
+     * @return self
+     */
+    public function setType($type);
+
+    /**
+     * Get type.
+     *
+     * @return string
+     */
+    public function getType();
 }

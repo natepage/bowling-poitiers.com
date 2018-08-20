@@ -66,7 +66,7 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\Newsletter
-            - AdminBundle:CRUD
+            - AdminBundle:Newsletter
         tags:
             - name: sonata.admin
               manager_type: orm

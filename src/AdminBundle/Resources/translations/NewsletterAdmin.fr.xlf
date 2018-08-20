@@ -26,9 +26,25 @@
                 <source>list.label_token</source>
                 <target>Code unique</target>
             </trans-unit>
+            <trans-unit id="list.label_activated">
+                <source>list.label_activated</source>
+                <target>Activé</target>
+            </trans-unit>
+            <trans-unit id="filter.label_mail">
+                <source>filter.label_mail</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="filter.label_activated">
+                <source>filter.label_activated</source>
+                <target>Activé</target>
+            </trans-unit>
             <trans-unit id="form.label_mail">
                 <source>form.label_mail</source>
                 <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.label_activated">
+                <source>form.label_activated</source>
+                <target>Activé</target>
             </trans-unit>
             <trans-unit id="show.label_mail">
                 <source>show.label_mail</source>
@@ -37,6 +53,18 @@
             <trans-unit id="show.label_token">
                 <source>show.label_token</source>
                 <target>Code unique</target>
+            </trans-unit>
+            <trans-unit id="show.label_activated">
+                <source>show.label_activated</source>
+                <target>Activé</target>
+            </trans-unit>
+            <trans-unit id="batch_action_activate">
+                <source>batch_action_activate</source>
+                <target>Demander activation</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_activate_success">
+                <source>flash_batch_activate_success</source>
+                <target>La demande a été diffusée aux inscrits</target>
             </trans-unit>
         </body>
     </file>

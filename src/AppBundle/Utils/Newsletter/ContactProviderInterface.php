@@ -24,4 +24,18 @@ interface ContactProviderInterface
      * @return array
      */
     public function getContactsEmail();
+
+    /**
+     * Returns an array with users email.
+     *
+     * @return array
+     */
+    public function getUsersEmail();
+
+    /**
+     * Returns an array with newsletter email.
+     *
+     * @return array
+     */
+    public function getNewslettersEmail();
 }

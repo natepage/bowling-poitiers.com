@@ -36,6 +36,13 @@ class Newsletter
     private $token;
 
     /**
+     * @ORM\Column(name="activated", type="boolean", options={"default" : 0})
+     *
+     * @var bool
+     */
+    private $activated = false;
+
+    /**
      * For sonata's form rendering.
      */
     public function __toString()
@@ -97,5 +104,29 @@ class Newsletter
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * Set activated.
+     *
+     * @param bool $activated
+     *
+     * @return \AppBundle\Entity\Newsletter
+     */
+    public function setActivated($activated)
+    {
+        $this->activated = $activated;
+
+        return $this;
+    }
+
+    /**
+     * Is activated.
+     *
+     * @return bool
+     */
+    public function isActivated()
+    {
+        return $this->activated;
     }
 }

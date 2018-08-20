@@ -52,7 +52,9 @@ class ContactFormType extends AbstractType
     private function getContacts()
     {
         return array_merge($this->contactProvider->getContactsFormRepresentation(), array(
-            'all' => 'form.select_all_contacts'
+            'form.select_all_contacts' => 'all',
+            'form.select_users_contacts' => 'users',
+            'form.select_newsletters_contacts' => 'newsletters'
         ));
     }
 }

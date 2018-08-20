@@ -41,6 +41,8 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - "AppBundle:utils:custom_themes.html.twig"
+    paths:
+        '%kernel.root_dir%/../src/UserBundle/Resources/views': FOSUser
 
 # Doctrine Configuration
 doctrine:

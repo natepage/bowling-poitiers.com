@@ -38,6 +38,7 @@ class NewsletterAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('mail')
+            ->add('activated')
         ;
     }
 
@@ -46,6 +47,7 @@ class NewsletterAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('mail')
             ->add('token')
+            ->add('activated')
         ;
     }
 
@@ -53,6 +55,7 @@ class NewsletterAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('mail')
+            ->add('activated')
         ;
     }
 
@@ -61,6 +64,33 @@ class NewsletterAdmin extends AbstractAdmin
         $showMapper
             ->add('mail')
             ->add('token')
+            ->add('activated')
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBatchActions()
+    {
+        $actions = parent::getBatchActions();
+
+        if($this->hasRole('ROLE_NEWSLETTER_ADMIN')) {
+            $actions['activate'] = array(
+                'label' => 'batch_action_activate',
+                'translation_domain' => $this->translationDomain,
+                'ask_confirmation' => true
+            );
+        }
+
+        return $actions;
+    }
+
+    public function hasRole($role)
+    {
+        $tokenStorage = $this->getConfigurationPool()->getContainer()->get('security.token_storage');
+        $authorizationChecker = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
+
+        return null !== $tokenStorage->getToken() && $authorizationChecker->isGranted($role);
     }
 }

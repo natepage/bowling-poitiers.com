@@ -2,6 +2,7 @@
 
 namespace AppBundle\Utils\Newsletter;
 
+use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Post;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -141,7 +142,7 @@ class NewsletterManager implements NewsletterManagerInterface
                     'posts' => $posts,
                     'contact' => $contact
                 ));
-                $to = (array($contact->getEmail()));
+                $to = array($contact->getEmail());
 
                 try {
                     $this->emailSender->send($from, $to, $subject, $template);
@@ -164,6 +165,29 @@ class NewsletterManager implements NewsletterManagerInterface
         }
 
         return $response;
+    }
+
+    public function alertActivate(Newsletter $newsletter)
+    {
+        $from = $this->from;
+        $subject = 'Activer votre abonnement';
+
+        $contact = (new Contact())
+            ->setEmail($newsletter->getMail())
+            ->setToken($newsletter->getToken())
+            ->setUnSubscribable(true);
+
+        $template = $this->templating->render('@Admin/Batch/Newsletter/alert_activate_newsletter.html.twig', array(
+            'contact' => $contact
+        ));
+
+        try {
+            $this->emailSender->send($from, array($contact->getEmail()), $subject, $template);
+        } catch (\Exception $e) {
+            $this->logger->error(sprintf('Activate Newsletter not sent to %s', $contact->getEmail()), array(
+                'exception' => $e->getMessage()
+            ));
+        }
     }
 
     private function getSubject(\DateTime $date)

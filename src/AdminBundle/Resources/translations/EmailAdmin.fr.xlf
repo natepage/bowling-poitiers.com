@@ -26,6 +26,14 @@
                 <source>form.select_all_contacts</source>
                 <target>Tous les contacts</target>
             </trans-unit>
+            <trans-unit id="form.select_users_contacts">
+                <source>form.select_users_contacts</source>
+                <target>Utilisateurs uniquement</target>
+            </trans-unit>
+            <trans-unit id="form.select_newsletters_contacts">
+                <source>form.select_newsletters_contacts</source>
+                <target>Newsletters uniquement</target>
+            </trans-unit>
             <trans-unit id="tab.email">
                 <source>tab.email</source>
                 <target>Email</target>
