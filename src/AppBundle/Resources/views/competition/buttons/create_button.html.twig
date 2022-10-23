@@ -1,5 +1,0 @@
-{% set link = is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') ? path('competitions_create', {'display': display}) : path('fos_user_security_login') %}
-
-<a href="{{ link }}" class="btn btn-success">
-    <i class="fa fa-plus-circle"></i> <span class="hidden-xs">Ajouter une compétition</span>
-</a>

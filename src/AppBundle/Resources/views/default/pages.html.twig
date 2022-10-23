@@ -1,8 +1,0 @@
-<div class="list-group">
-    {% for page in pages %}
-        <a href="{{ path('page_view', {'slug': page.slug}) }}" class="list-group-item title-like">{{ page.title }}</a>
-    {% endfor %}
-    <a href="{{ path('listing') }}" class="list-group-item title-like">Listing</a>
-    <a href="{{ path('gallery') }}" class="list-group-item title-like">Galerie</a>
-    <a href="{{ path('competitions_index') }}" class="list-group-item title-like">Recherche partenaires</a>
-</div>
