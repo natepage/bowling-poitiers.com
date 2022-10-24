@@ -85,6 +85,8 @@ RUN rm -Rf docker/
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
+    chown -R www-data:www-data var/cache; \
+    chown -R www-data:www-data var/log; \
     if [ -f composer.json ]; then \
 		composer dump-autoload --classmap-authoritative --no-dev; \
 		composer dump-env prod; \
