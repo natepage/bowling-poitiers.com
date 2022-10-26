@@ -16,7 +16,9 @@ final class PostCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield TextField::new('id')->hideOnForm();
         yield TextField::new('title');
+        yield TextField::new('slug')->hideOnForm();
 
         yield DateTimeField::new('createdAt')->hideOnForm();
         yield DateTimeField::new('updatedAt')->hideOnForm();
