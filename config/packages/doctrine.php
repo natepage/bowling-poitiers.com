@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+use App\Infrastructure\Doctrine\Dbal\Type\CarbonImmutableType;
+use Doctrine\DBAL\Types\Types;
 use Symfony\Config\DoctrineConfig;
 use Symfony\Config\FrameworkConfig;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\env;
@@ -13,6 +15,9 @@ return static function (DoctrineConfig $doctrineConfig, FrameworkConfig $framewo
         ->defaultConnection('default')
         ->connection('default')
         ->url(env('DATABASE_URL')->resolve());
+
+    $doctrineConfig->dbal()
+        ->type(Types::DATETIME_IMMUTABLE, CarbonImmutableType::class);
 
     $doctrineConfig->orm()
         ->autoGenerateProxyClasses(true)

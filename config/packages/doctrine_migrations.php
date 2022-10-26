@@ -7,6 +7,6 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 return static function (DoctrineMigrationsConfig $doctrineMigrationsConfig): void {
     $doctrineMigrationsConfig
         ->enableProfiler(false)
-        ->customTemplate(param('kernel.project_dir') . 'migrations/migration.tpl')
-        ->migrationsPath('DoctrineMigrations', param('kernel.project_dir') . '/src/migrations');
+        ->customTemplate(param('kernel.project_dir') . '/migrations/migration.tpl')
+        ->migrationsPath('DoctrineMigrations', param('kernel.project_dir') . '/migrations');
 };

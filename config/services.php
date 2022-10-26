@@ -16,4 +16,8 @@ return static function (ContainerConfigurator $container): void {
             '../src/Entity/',
             '../src/Kernel.php',
         ]);
+
+    $services
+        ->load('App\\Admin\\Controller\\', '../src/Admin/Controller/*')
+        ->tag('controller.service_arguments');
 };
