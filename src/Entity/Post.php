@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 class Post extends AbstractEntity
@@ -25,6 +28,10 @@ class Post extends AbstractEntity
     #[ORM\Column(type: Types::STRING)]
     private ?string $description = null;
 
+    #[Assert\Valid]
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: PostImage::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private ?Collection $images = null;
+
     #[ORM\Column(type: Types::STRING)]
     private ?string $title = null;
 
@@ -33,6 +40,45 @@ class Post extends AbstractEntity
 
     #[ORM\Column(type: Types::STRING, length: 50)]
     private string $status = self::STATUS_DRAFT;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages(): Collection
+    {
+        return $this->images ??= new ArrayCollection();
+    }
+
+    public function addImage(PostImage $image): self
+    {
+        $images = $this->getImages();
+
+        if ($images->contains($image) === false) {
+            $images->add($image);
+
+            $image->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(PostImage $image): self
+    {
+        $images = $this->getImages();
+
+        if ($images->contains($image) === true) {
+            $images->removeElement($image);
+
+            $image->setPost(null);
+        }
+
+        return $this;
+    }
 
     public function getSlug(): ?string
     {

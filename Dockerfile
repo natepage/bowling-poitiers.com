@@ -90,7 +90,7 @@ COPY --link  . .
 RUN rm -Rf docker/
 
 RUN set -eux; \
-	mkdir -p var/cache var/log; \
+	mkdir -p var/cache/images var/log; \
     chown -R www-data:www-data var/cache; \
     chown -R www-data:www-data var/log; \
     if [ -f composer.json ]; then \

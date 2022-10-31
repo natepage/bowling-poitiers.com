@@ -15,6 +15,7 @@ return static function (ContainerConfigurator $container): void {
             '../src/DependencyInjection/',
             '../src/Entity/',
             '../src/Kernel.php',
+            '../src/**/Config/*.php',
         ]);
 
     $services
