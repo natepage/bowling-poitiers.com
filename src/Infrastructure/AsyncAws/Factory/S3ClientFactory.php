@@ -7,12 +7,12 @@ use AsyncAws\S3\S3Client;
 
 final class S3ClientFactory
 {
+    public function __construct(private readonly array $config)
+    {
+    }
+
     public function create(): S3Client
     {
-        return new S3Client([
-            'accessKeyId' => 'AKIA5KDI4VIJD7RNKFDZ',
-            'accessKeySecret' => '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',
-            'region' => 'ap-southeast-2',
-        ]);
+        return new S3Client($this->config);
     }
 }

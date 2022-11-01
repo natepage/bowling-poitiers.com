@@ -3,16 +3,17 @@ declare(strict_types=1);
 
 /** @var string $env */
 
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Config\FrameworkConfig;
-use Symfony\Config\WebProfilerConfig;
 
 /** @var string $env */
 
-return static function (FrameworkConfig $frameworkConfig, WebProfilerConfig $webProfilerConfig) use ($env): void {
+return static function (ContainerConfigurator $container, FrameworkConfig $frameworkConfig) use ($env): void {
     if ($env === 'dev') {
-        $webProfilerConfig
-            ->toolbar(true)
-            ->interceptRedirects(false);
+        $container->extension('web_profiler', [
+            'toolbar' => true,
+            'intercept_redirects' => false,
+        ]);
 
         $frameworkConfig->profiler()
             ->onlyExceptions(false)
@@ -20,9 +21,10 @@ return static function (FrameworkConfig $frameworkConfig, WebProfilerConfig $web
     }
 
     if ($env === 'test') {
-        $webProfilerConfig
-            ->toolbar(false)
-            ->interceptRedirects(false);
+        $container->extension('web_profiler', [
+            'toolbar' => false,
+            'intercept_redirects' => false,
+        ]);
 
         $frameworkConfig->profiler()
             ->collect(false);
